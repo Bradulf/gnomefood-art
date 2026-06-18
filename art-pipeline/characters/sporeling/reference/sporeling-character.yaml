@@ -1,0 +1,214 @@
+id: sporeling
+name: Sporeling
+version: v1
+role: starter_character
+species_type: mushroom_born_fungal_lifeform
+
+core_identity:
+  summary: >
+    A small mushroom-born creature, newly awakened, learning to walk and spreading
+    soft bioluminescent light with every step.
+  personality:
+    - gentle
+    - curious
+    - calm
+    - innocent
+    - observant
+  story_function:
+    - first being of its kind
+    - carries life and light into the fungal kingdom
+    - begins in a desert wasteland and evolves with the world
+
+visual_identity:
+  body_type: small upright fungal humanoid, not human
+  silhouette: compact, rounded, simple, readable
+  proportions:
+    height: short and childlike
+    head_to_body_ratio: large mushroom cap head, small body
+    body_shape: single soft stalk-like torso
+    limbs: short organic root-like arms and legs
+    anatomy_rule: fungal growth logic, not human anatomy
+
+head:
+  form: mushroom cap forms the head
+  cap_shape:
+    type: rounded dome mushroom cap
+    size: oversized compared to body
+    brim: wide underside with visible gill structure
+    texture: soft porous mushroom flesh with subtle speckles
+  face:
+    features: minimal
+    eyes:
+      count: 2
+      shape: round glowing dots
+      color: warm amber gold
+      glow: soft bioluminescent
+    mouth: none
+    nose: none
+    expression: calm neutral curiosity
+
+body:
+  torso:
+    shape: vertical mushroom stalk
+    texture: soft organic mushroom flesh
+    surface: porous, fibrous, slightly translucent
+    color: warm cream beige
+  lower_body:
+    form: dissolves into root-like mycelium strands
+    structure: lattice-like tendrils forming legs
+    movement_feel: wobbly, soft, natural fungal weight
+
+limbs:
+  arms:
+    type: root-like fungal arms
+    length: short
+    shape: soft tapering organic strands
+    hands: small rounded root tips, not human hands
+    fingers: suggested only, soft and nubby
+  legs:
+    type: bent root-like fungal legs
+    length: short
+    gait: gentle wobbling walk
+    feet: clustered root pads, not human feet
+
+surface_materials:
+  primary_material: mushroom flesh
+  secondary_material: mycelium
+  details:
+    - soft organic pores
+    - small budding mushrooms along torso and limbs
+    - fibrous root lattice
+    - subtle bioluminescent specks
+    - spore particles released during motion
+  avoid:
+    - hard armor
+    - metal limbs
+    - human skin
+    - muscles
+    - bones
+
+color_palette:
+  primary:
+    - warm cream
+    - pale beige
+    - soft tan
+  secondary:
+    - caramel brown
+    - muted umber
+    - mushroom gill beige
+  glow:
+    - warm amber
+    - golden orange
+  accent_optional:
+    - faint dusty blue-green bioluminescent haze
+  overall_palette_note: earthy, soft, warm, natural, gentle
+
+motion:
+  default_pose: upright standing, relaxed arms, slight wobble
+  walk_cycle:
+    direction_options:
+      - left_to_right
+      - right_to_left
+    gait: soft uneven fungal step
+    motion_traits:
+      - slow
+      - gentle
+      - curious
+      - slightly wobbly
+      - natural fungal weight
+    trail: faint glowing spores released behind each step
+
+turnaround:
+  front:
+    description: oversized mushroom cap, glowing eyes beneath cap, root-lattice lower body visible
+  side:
+    description: cap projects forward and backward, stalk torso curves slightly, limbs hang softly
+  back:
+    description: no face visible, cap dome and dangling mycelium lattice dominate silhouette
+
+scale_and_composition:
+  default_scene_scale: small compared to landscape
+  readability: must remain readable at small size in parallax scene
+  layer_usage:
+    preferred_layers:
+      - middle
+      - artifact
+    avoid_layers:
+      - distant unless used as tiny silhouette
+      - near unless intentionally foregrounded
+  transparent_png_rule: character should be isolated cleanly when used as a separate asset
+
+evolution_system:
+  stage: early
+  current_stage_name: newly awakened desert sporeling
+  allowed_early_variations:
+    - dusty sand on lower mycelium
+    - faint spore glow
+    - minor posture changes
+    - walking, standing, looking upward
+  future_evolution_hints:
+    - stronger bioluminescence
+    - subtle cyberpunk agrarian tools
+    - woven fungal garments
+    - mycelium lantern backpack
+    - tiny farming satchel
+    - glowing circuit-like fungal veins
+  forbidden_at_current_stage:
+    - heavy armor
+    - weapons
+    - advanced cyberpunk implants
+    - clothing that hides fungal anatomy
+    - fully human posture
+
+hard_no:
+  - no human anatomy
+  - no realistic human body
+  - no muscles
+  - no human hands
+  - no human feet
+  - no mouth
+  - no teeth
+  - no nose
+  - no horror design
+  - no grotesque gore
+  - no insect anatomy
+  - no animal face
+  - no aggressive expression
+  - no photorealistic person
+  - no text
+  - no logo
+  - no watermark
+
+prompt_keywords:
+  positive:
+    - small mushroom-born creature
+    - fungal humanoid but not human
+    - oversized mushroom cap head
+    - glowing amber eyes
+    - soft mycelium body
+    - root-like limbs
+    - porous mushroom flesh
+    - gentle curious expression
+    - faint glowing spores
+    - warm beige palette
+    - storybook fantasy concept art
+    - transparent background
+  negative:
+    - human anatomy
+    - realistic humanoid
+    - horror mushroom monster
+    - mouth
+    - nose
+    - teeth
+    - muscles
+    - hard armor
+    - cyberpunk robot body
+    - watermark
+    - text
+
+reference_image:
+  filename: sporeling_v1.jpeg
+  usage: >
+    Use this image as the primary visual identity reference. Preserve the cap
+    shape, glowing eyes, soft beige palette, root-like mycelium limbs, gentle
+    expression, and compact proportions.

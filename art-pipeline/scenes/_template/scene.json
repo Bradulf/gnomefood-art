@@ -1,0 +1,77 @@
+{
+  "id": "scene-template",
+  "title": "Scene Title",
+  "phase": "desert-wasteland",
+  "world_evolution_phase": "dead desert",
+  "order": 0,
+  "status": "draft",
+  "story": "story.md",
+  "traversal": "traversal.md",
+  "continuity": {
+    "previous_scene": null,
+    "previous_scene_story": null,
+    "previous_scene_traversal": null,
+    "previous_scene_prompts": null,
+    "optional_second_previous_scene": null,
+    "preserve": [
+      "camera height",
+      "camera angle",
+      "horizon placement",
+      "framing",
+      "world scale",
+      "bottom alignment",
+      "route direction",
+      "terrain layout where appropriate",
+      "major landmarks where appropriate"
+    ],
+    "change": [
+      "story event",
+      "character action",
+      "props",
+      "world state",
+      "visible progress",
+      "emotional beat"
+    ]
+  },
+  "canvas_consistency": {
+    "dimensions": "identical across all strips",
+    "horizon_placement": "identical across all strips",
+    "camera_position": "identical across all strips",
+    "framing": "identical across all strips",
+    "world_scale": "identical across all strips",
+    "bottom_alignment": "identical across all strips"
+  },
+  "assets": {},
+  "characters": [],
+  "layers": [
+    {
+      "id": "01-front-strip",
+      "role": "front-strip",
+      "layer_rule": "../../layer-rules/01-front-strip.md",
+      "source": "layers/01-front-strip.md",
+      "output": "output/images/scene-template-01-front-strip.png"
+    },
+    {
+      "id": "02-main-strip",
+      "role": "main-strip",
+      "layer_rule": "../../layer-rules/02-main-strip.md",
+      "source": "layers/02-main-strip.md",
+      "output": "output/images/scene-template-02-main-strip.png"
+    },
+    {
+      "id": "03-rear-strip",
+      "role": "rear-strip",
+      "layer_rule": "../../layer-rules/03-rear-strip.md",
+      "source": "layers/03-rear-strip.md",
+      "output": "output/images/scene-template-03-rear-strip.png"
+    },
+    {
+      "id": "04-atmosphere-strip",
+      "role": "atmosphere-strip",
+      "layer_rule": "../../layer-rules/04-atmosphere-strip.md",
+      "source": "layers/04-atmosphere-strip.md",
+      "output": "output/images/scene-template-04-atmosphere-strip.png"
+    }
+  ],
+  "notes": "Duplicate this template for each scene. Keep scene authoring files short: story.md drives the beat, traversal.md supports the viewer experience, and layers/*.md are simple visual notes. Global docs carry the pipeline rules. Keep layer ids stable so prompt generation and website integration can be automated later."
+}
