@@ -1,19 +1,27 @@
 # Generated Prompts
 
-Final art-director prompts for `001-desert-emergence`, generated from the existing story, traversal, strip, camera, style, and layer-rule documents.
+Four self-contained art-director prompts for `001-desert-emergence`. Each prompt can be pasted alone into ChatGPT image generation to create one transparent PNG compositing strip.
 
-Scene story beat: the desert is still lifeless, but the first faint mycelium veins appear beneath the sand. The world shifts from completely dead to barely awakening. No character appears yet; the landscape carries the lonely, ancient, quiet beat with a tiny hint of hope.
-
-No optional artifacts or props are assigned for this scene. Characters are omitted because this scene has no `characters.md` assignment file and `story.md` says no character action occurs yet.
-
-## 01 Front Strip
+## 01-front-strip
 
 ```text
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
 Scene: 001-desert-emergence
 Strip: 01-front-strip - front-strip
 
-Story beat:
-A dead desert shows its first faint mycelium veins beneath the sand. The mood is lonely and ancient, with a tiny hopeful signal that the basin is beginning to wake.
+Shared scene context:
+Scene id: 001-desert-emergence
+Scene title: First Tracks
+Story beat: The desert is still lifeless, but the first faint mycelium veins appear beneath the sand. The basin shifts from completely dead to barely awakening, with a lonely ancient mood and a tiny hint of hope.
+Scene memory / previous continuity: First scene; no previous-scene continuity. Establish the dead desert route, cracked sand, sparse rocks, faint fungal veins, side-view camera language, horizon relationship, bottom alignment, and world scale for later scenes.
+Current visible change: The first hair-thin spore-vein path and tiny fungal nodes appear in otherwise dry sand.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
 
 Strip role:
 Cropped route-edge terrain frames the route with dry texture, partial occlusion, and fragile early fungal traces.
@@ -24,26 +32,36 @@ Render partial side-view rocks emerging from the lower and side edges, cracked s
 Style:
 Cinematic hand-crafted fungal cyberpunk agrarian desert: sun-faded ochre, rust, ash, bleached bone, cracked clay, dry cyan reflections, and very small spore-gold or toxic-neon accents. Dry, exposed, post-apocalyptic, not cute or lush.
 
-Shared alignment:
-Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
 
-Transparency and composition:
-Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop; framing forms may enter from edges but must not become an opaque border.
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop; framing forms may enter from edges but must not become an opaque border.
 
-Negative:
+Negative constraints:
 No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, zoom change, duplicate strip, unassigned assets, unrelated characters, visible destination, lush vegetation, cute mushrooms, polished generic sci-fi.
-
-Suggested filename: output/images/01-front-strip.png
 ```
 
-## 02 Main Strip
+## 02-main-strip
 
 ```text
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
 Scene: 001-desert-emergence
 Strip: 02-main-strip - main-strip
 
-Story beat:
-The lifeless desert begins to awaken as faint mycelium veins break through the sand. The route should feel newly forming, quiet, and fragile rather than settled or built.
+Shared scene context:
+Scene id: 001-desert-emergence
+Scene title: First Tracks
+Story beat: The desert is still lifeless, but the first faint mycelium veins appear beneath the sand. The basin shifts from completely dead to barely awakening, with a lonely ancient mood and a tiny hint of hope.
+Scene memory / previous continuity: First scene; no previous-scene continuity. Establish the dead desert route, cracked sand, sparse rocks, faint fungal veins, side-view camera language, horizon relationship, bottom alignment, and world scale for later scenes.
+Current visible change: The first hair-thin spore-vein path and tiny fungal nodes appear in otherwise dry sand.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
 
 Strip role:
 The clearest walkable side-view route through sand, rocks, and early fungal life.
@@ -54,26 +72,36 @@ Render a subtle traversable path through profile-view dunes, shallow depressions
 Style:
 Cinematic fungal cyberpunk agrarian desert worldbuilding. Use pale sand, sun-faded ochre, ash, bleached bone, rust, cracked clay, dry cyan reflections, and sparse spore-gold glow in the first living veins. Ancient, abandoned, survival-focused, gently hopeful.
 
-Shared alignment:
-Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
 
-Transparency and composition:
-Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas around the path, no rectangular backdrop, no sky plate, no cloud plate, no horizon background fill, no white background, no black background, no full scene backdrop, no scenic vista, no front-strip edge framing.
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas around the path, no rectangular backdrop, no sky plate, no cloud plate, no horizon background fill, no white background, no black background, no full scene backdrop, no scenic vista, no front-strip edge framing.
 
-Negative:
+Negative constraints:
 No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, zoom change, duplicate strip, unassigned assets, unrelated characters, visible destination, generic fantasy road, clean pavement, lush oasis, large mushrooms, city structures.
-
-Suggested filename: output/images/02-main-strip.png
 ```
 
-## 03 Rear Strip
+## 03-rear-strip
 
 ```text
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
 Scene: 001-desert-emergence
 Strip: 03-rear-strip - rear-strip
 
-Story beat:
-The landscape itself is waking, with no character action yet. Rear forms should make the same faint spore-vein path slightly more legible while keeping the desert quiet and sparse.
+Shared scene context:
+Scene id: 001-desert-emergence
+Scene title: First Tracks
+Story beat: The desert is still lifeless, but the first faint mycelium veins appear beneath the sand. The basin shifts from completely dead to barely awakening, with a lonely ancient mood and a tiny hint of hope.
+Scene memory / previous continuity: First scene; no previous-scene continuity. Establish the dead desert route, cracked sand, sparse rocks, faint fungal veins, side-view camera language, horizon relationship, bottom alignment, and world scale for later scenes.
+Current visible change: The first hair-thin spore-vein path and tiny fungal nodes appear in otherwise dry sand.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
 
 Strip role:
 Behind-route terrain repeats the path cue and gives the main route dry environmental context.
@@ -84,26 +112,36 @@ Render same-scale cracked sand, partly buried rock edges, low dune shelves, dry 
 Style:
 Hand-crafted fungal cyberpunk agrarian fantasy science fiction in the desert wasteland phase. Sand, cracked clay, salt dust, rust-tinted buried fragments, bone-dry stone, dry roots, delicate mycelium, and subtle hopeful glow.
 
-Shared alignment:
-Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
 
-Transparency and composition:
-Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, transparent openings, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop; rear forms remain isolated for website positioning.
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, transparent openings, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop; rear forms remain isolated for website positioning.
 
-Negative:
+Negative constraints:
 No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, zoom change, duplicate strip, unassigned assets, unrelated characters, polished showroom rendering, readable symbols, dense settlement, mature fungal forest.
-
-Suggested filename: output/images/03-rear-strip.png
 ```
 
-## 04 Atmosphere Strip
+## 04-atmosphere-strip
 
 ```text
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
 Scene: 001-desert-emergence
 Strip: 04-atmosphere-strip - atmosphere-strip
 
-Story beat:
-The desert remains mostly lifeless, but a faint atmospheric trace of spores and mycelium hints that the basin can receive Sporeling in the next scene.
+Shared scene context:
+Scene id: 001-desert-emergence
+Scene title: First Tracks
+Story beat: The desert is still lifeless, but the first faint mycelium veins appear beneath the sand. The basin shifts from completely dead to barely awakening, with a lonely ancient mood and a tiny hint of hope.
+Scene memory / previous continuity: First scene; no previous-scene continuity. Establish the dead desert route, cracked sand, sparse rocks, faint fungal veins, side-view camera language, horizon relationship, bottom alignment, and world scale for later scenes.
+Current visible change: The first hair-thin spore-vein path and tiny fungal nodes appear in otherwise dry sand.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
 
 Strip role:
 Dust, spores, heat shimmer, and soft route cues only; atmosphere supports the path without becoming a background painting.
@@ -114,14 +152,12 @@ Render transparent dust veils, drifting spores, heat haze, soft sand-choked silh
 Style:
 Cinematic desert wasteland atmosphere: sun-faded ochre, pale sand, ash, bleached bone, rust-muted silhouettes, dry cyan hints, and a very restrained hopeful spore glow. Tactile and dusty, not dreamy generic fantasy.
 
-Shared alignment:
-Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
 
-Transparency and composition:
-Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop beyond the described atmospheric forms.
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop beyond the described atmospheric forms.
 
-Negative:
+Negative constraints:
 No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, zoom change, duplicate strip, unassigned assets, unrelated characters, sky plate, full ground fill, high-detail props, front-strip objects, visible destination, Sporeling.
-
-Suggested filename: output/images/04-atmosphere-strip.png
 ```

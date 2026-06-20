@@ -1,0 +1,35 @@
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
+Scene: 003-mound-opening
+Strip: 03-rear-strip - rear-strip
+
+Shared scene context:
+Scene id: 003-mound-opening
+Scene title: Mound Opening
+Story beat: The viewer follows the same fungal-vein path toward the mound as it opens in side view. White mushrooms cluster around the rim and blue bioluminescent light appears from inside the newly opened earth.
+Scene memory / previous continuity: Preserve the desert route, cracked sand, fungal veins, central mound alignment, sparse white mushroom growth, side-view camera language, horizon relationship, bottom alignment, and world scale from Scene 002.
+Current visible change: The mound evolves from closed swelling earth into an open living fissure with clustered white mushrooms, disturbed rim fragments, spores, and blue interior glow.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
+
+Strip role:
+Supporting terrain, repeated route cues, secondary structures, and continuity elements in one continuous scene slice.
+
+Visual content:
+Create one continuous full-width side-view supporting terrain strip. Echo the same route with cracked sand shelves, low dry clay banks, partly buried stones, and fungal vein paths inherited from Scene 002. Around the mound opening, support the main action with secondary rim shapes, loose dirt fragments, small white mushroom clusters spreading around the perimeter, and subtle blue glints leaking from the opening. Continue the terrain past the mound with trailing veins, drifting spores, small mushroom clusters, and dry contours that show the change carrying forward. The mound should read as dirt opening into more dirt, with no constructed interior, no cave, and no doorway.
+
+Style:
+Hand-crafted fungal cyberpunk agrarian desert phase. Sand, cracked clay, salt dust, rust-tinted buried fragments, bone-dry stone, dry roots, delicate mycelium, fungal white caps, restrained spore-gold, and soft blue bioluminescent accents. Sparse, ancient, mysterious, and actively changing.
+
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon placement, same bottom alignment, same camera distance, same world scale, no scale shift, no camera rotation, and no perspective change across strips. Align to one shared continuous vertical-scroll route; match the mound position, route direction, and fungal vein cue used by the other strips.
+
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, transparent openings, no rectangular backdrop, no sky plate, no cloud plate, no horizon background fill, no white background, no black background, no full scene backdrop. No hard sectioning or layout divisions. Leave enough terrain continuation before and after the mound for engine movement.
+
+Negative constraints:
+No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, scale shift, centered mound-only composition, duplicate strip, unassigned assets, unrelated characters, Sporeling, people, animals, ornate fantasy altar, cave entrance, doorway, portal, visible destination, readable symbols, dense settlement, mature fungal forest, full landscape backdrop.

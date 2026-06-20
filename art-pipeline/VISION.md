@@ -25,24 +25,24 @@ The image generator creates the scene assets.
 
 The website makes those assets move.
 
-Each scene is built from four same-camera-distance transparent strips:
+Each timeline scene is built from four same-camera, same-size transparent compositing strips:
 - 01-front-strip
 - 02-main-strip
 - 03-rear-strip
 - 04-atmosphere-strip
 
-The strips should feel like same-camera-distance compositing slices of one walkable scene, not separate illustrations, per-strip camera-distance changes, or traditional depth perspective layers.
+The strips should feel like aligned compositing slices of one Rolodex scene, not separate illustrations, per-strip camera changes, or old multi-plane authoring.
 
 All scenes share the same camera language. Preserve camera height, camera angle, horizon placement, framing, world scale, and side-view traversal plane. Do not zoom in, zoom out, rotate the camera, move the horizon, or change perspective from scene to scene.
 
 Each new scene should visually evolve from the previous scene instead of restarting from a new composition. Preserve terrain layout, major landmarks, world scale, and camera framing where appropriate; change story events, character actions, props, world state, cultivation, infrastructure, and emotional tone.
 
-The application creates the parallax, scroll, and Rolodex movement.
+The application creates the scroll, compositing movement, and Rolodex-style transition between moments.
 
 The generator should read the scene in this order:
 - `story.md` defines what happens now
 - `traversal.md` defines how the viewer moves through that story beat
-- strip files define how each compositing layer supports the traversal
+- strip files define how each compositing strip supports the traversal
 - environment descriptions provide physical evidence of the story, but do not define the scene by themselves
 
 The generator should focus on:

@@ -10,10 +10,6 @@ const REQUIRED_STRIPS = [
   "04-atmosphere-strip",
 ];
 
-const REQUIRED_LAYER_FILES = REQUIRED_STRIPS.map((strip) =>
-  path.join("layers", `${strip}.md`)
-);
-
 const STALE_TERMS = [
   "foreground layer",
   "midground layer",
@@ -22,6 +18,11 @@ const STALE_TERMS = [
   "far layer",
   "distant layer",
   "different camera distance",
+  "parallax layer",
+  "parallax strip",
+  "parallax asset",
+  "parallax engine",
+  "side-scrolling",
   "zoom in",
   "zoom out",
 ];
@@ -48,6 +49,16 @@ function readText(filePath) {
 
 function exists(filePath) {
   return fs.existsSync(filePath);
+}
+
+function stripFileCandidates(strip) {
+  return [path.join("layers", `${strip}.md`), `${strip}.md`];
+}
+
+function findExistingStripFile(sceneDir, strip) {
+  return stripFileCandidates(strip).find((candidate) =>
+    exists(path.join(sceneDir, candidate))
+  );
 }
 
 function normalizeText(text) {
@@ -97,6 +108,38 @@ function hasSharedCameraCanvasAlignment(promptsText) {
     text.includes("world scale");
 
   return canvas && camera && alignment;
+}
+
+function hasGenerationCommand(promptText) {
+  return normalizeText(promptText).includes(
+    "create one transparent png image for this single compositing strip"
+  );
+}
+
+function hasInlineSharedContext(promptText) {
+  const text = normalizeText(promptText);
+  return (
+    text.includes("shared scene context") &&
+    text.includes("scene id") &&
+    text.includes("story beat") &&
+    text.includes("current visible change")
+  );
+}
+
+function hasSharedContextFields(sharedContextText) {
+  const text = normalizeText(sharedContextText);
+  return [
+    "scene id",
+    "scene title",
+    "story beat",
+    "scene memory",
+    "current visible change",
+    "camera / canvas / alignment law",
+    "transparency requirements",
+    "character presence",
+    "asset / prop presence",
+    "global negative constraints",
+  ].every((field) => text.includes(field));
 }
 
 function isNonFirstScene(sceneDir, sceneJson) {
@@ -153,30 +196,28 @@ function main() {
 
   addCheck(
     checks,
-    "scene.json exists",
-    exists(sceneJsonPath),
-    path.relative(process.cwd(), sceneJsonPath)
-  );
-  addCheck(
-    checks,
-    "scene.json parses",
-    exists(sceneJsonPath) && !sceneJsonError,
-    sceneJsonError
+    "scene.json parses when present",
+    !exists(sceneJsonPath) || !sceneJsonError,
+    exists(sceneJsonPath)
+      ? sceneJsonError || path.relative(process.cwd(), sceneJsonPath)
+      : "optional scene.json not present"
   );
 
   const storyPath = path.join(sceneDir, "story.md");
   const traversalPath = path.join(sceneDir, "traversal.md");
+  const sharedContextPath = path.join(sceneDir, "output", "shared-context.md");
   const promptsPath = path.join(sceneDir, "output", "prompts.md");
 
   addCheck(checks, "story.md exists", exists(storyPath), "story.md");
   addCheck(checks, "traversal.md exists", exists(traversalPath), "traversal.md");
 
-  for (const layerFile of REQUIRED_LAYER_FILES) {
+  for (const strip of REQUIRED_STRIPS) {
+    const existingStripFile = findExistingStripFile(sceneDir, strip);
     addCheck(
       checks,
-      `${layerFile} exists`,
-      exists(path.join(sceneDir, layerFile)),
-      layerFile
+      `${strip} strip brief exists`,
+      Boolean(existingStripFile),
+      existingStripFile || stripFileCandidates(strip).join(" or ")
     );
   }
 
@@ -186,6 +227,30 @@ function main() {
     exists(promptsPath),
     "output/prompts.md"
   );
+
+  addCheck(
+    checks,
+    "output/shared-context.md exists",
+    exists(sharedContextPath),
+    "output/shared-context.md"
+  );
+
+  if (exists(sharedContextPath)) {
+    const sharedContextText = readText(sharedContextPath);
+    addCheck(
+      checks,
+      "output/shared-context.md includes required fields",
+      hasSharedContextFields(sharedContextText),
+      "expects scene id/title, story beat, continuity, visible change, alignment, transparency, character, asset, and negative fields"
+    );
+  } else {
+    addCheck(
+      checks,
+      "output/shared-context.md includes required fields",
+      false,
+      "output/shared-context.md could not be read"
+    );
+  }
 
   let promptsText = "";
   if (exists(promptsPath)) {
@@ -209,6 +274,23 @@ function main() {
 
     addCheck(
       checks,
+      "output/prompts.md includes four generation commands",
+      (lowerPrompts.match(
+        /create one transparent png image for this single compositing strip/g
+      ) || []).length === REQUIRED_STRIPS.length,
+      "expects one direct image-generation command per strip"
+    );
+
+    addCheck(
+      checks,
+      "output/prompts.md includes inline shared context for each strip",
+      (lowerPrompts.match(/shared scene context/g) || []).length ===
+        REQUIRED_STRIPS.length,
+      "expects shared scene context copied into every strip prompt"
+    );
+
+    addCheck(
+      checks,
       "output/prompts.md includes transparent PNG requirements",
       hasTransparentPngRequirements(promptsText),
       "expects transparent PNG plus alpha/backdrop constraints"
@@ -224,7 +306,7 @@ function main() {
     const staleMatches = lineNumbersForTerms(promptsText, STALE_TERMS);
     addCheck(
       checks,
-      "output/prompts.md has no stale camera-distance layer terms",
+      "output/prompts.md has no stale multi-plane/camera terminology",
       staleMatches.length === 0,
       staleMatches.length
         ? staleMatches
@@ -253,10 +335,55 @@ function main() {
     );
     addCheck(
       checks,
-      "output/prompts.md has no stale camera-distance layer terms",
+      "output/prompts.md has no stale multi-plane/camera terminology",
       false,
       "output/prompts.md could not be read"
     );
+    addCheck(
+      checks,
+      "output/prompts.md includes four generation commands",
+      false,
+      "output/prompts.md could not be read"
+    );
+    addCheck(
+      checks,
+      "output/prompts.md includes inline shared context for each strip",
+      false,
+      "output/prompts.md could not be read"
+    );
+  }
+
+  for (const strip of REQUIRED_STRIPS) {
+    const individualPromptPath = path.join(sceneDir, "output", "prompts", `${strip}.txt`);
+    const relativePromptPath = path.relative(sceneDir, individualPromptPath);
+    const promptExists = exists(individualPromptPath);
+
+    addCheck(
+      checks,
+      `${strip} individual prompt exists`,
+      promptExists,
+      relativePromptPath
+    );
+
+    if (promptExists) {
+      const promptText = readText(individualPromptPath);
+      addCheck(
+        checks,
+        `${strip} individual prompt is self-contained`,
+        hasGenerationCommand(promptText) &&
+          hasInlineSharedContext(promptText) &&
+          hasTransparentPngRequirements(promptText) &&
+          hasSharedCameraCanvasAlignment(promptText),
+        "expects generation command, inline shared context, transparency, and alignment"
+      );
+    } else {
+      addCheck(
+        checks,
+        `${strip} individual prompt is self-contained`,
+        false,
+        `${relativePromptPath} could not be read`
+      );
+    }
   }
 
   const nonFirstScene = isNonFirstScene(sceneDir, sceneJson);

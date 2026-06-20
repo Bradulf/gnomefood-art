@@ -1,0 +1,35 @@
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
+Scene: 001-desert-emergence
+Strip: 02-main-strip - main-strip
+
+Shared scene context:
+Scene id: 001-desert-emergence
+Scene title: First Tracks
+Story beat: The desert is still lifeless, but the first faint mycelium veins appear beneath the sand. The basin shifts from completely dead to barely awakening, with a lonely ancient mood and a tiny hint of hope.
+Scene memory / previous continuity: First scene; no previous-scene continuity. Establish the dead desert route, cracked sand, sparse rocks, faint fungal veins, side-view camera language, horizon relationship, bottom alignment, and world scale for later scenes.
+Current visible change: The first hair-thin spore-vein path and tiny fungal nodes appear in otherwise dry sand.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
+
+Strip role:
+The clearest walkable side-view route through sand, rocks, and early fungal life.
+
+Visual content:
+Render a subtle traversable path through profile-view dunes, shallow depressions, dry ripples, cracked clay, partly buried stones, wind-smoothed sand shelves, and small route contours. Let faint spore-like mycelium veins start near the center and stretch toward dunes and rocks, with hair-thin hyphae, small fungal nodes, and restrained bioelectric glimmers. The route enters near the top/north and exits near the bottom/south; do not show a destination.
+
+Style:
+Cinematic fungal cyberpunk agrarian desert worldbuilding. Use pale sand, sun-faded ochre, ash, bleached bone, rust, cracked clay, dry cyan reflections, and sparse spore-gold glow in the first living veins. Ancient, abandoned, survival-focused, gently hopeful.
+
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the faint spore-vein cue continuous with the other strips.
+
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas around the path, no rectangular backdrop, no sky plate, no cloud plate, no horizon background fill, no white background, no black background, no full scene backdrop, no scenic vista, no front-strip edge framing.
+
+Negative constraints:
+No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, zoom change, duplicate strip, unassigned assets, unrelated characters, visible destination, generic fantasy road, clean pavement, lush oasis, large mushrooms, city structures.

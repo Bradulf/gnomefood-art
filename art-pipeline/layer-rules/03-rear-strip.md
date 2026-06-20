@@ -8,11 +8,11 @@ Role summary: supporting terrain, repeated route cues, secondary structures, and
 
 ## Viewing Model
 
-Use the same camera distance, same side-view traversal plane, and same scale language as the other strips. Do not make this strip feel like a separate scenic vista. The engine handles apparent depth.
+Use the same camera, same canvas size, same side-view traversal plane, and same scale language as the other strips. Do not make this strip feel like a separate scenic vista. The engine handles compositing movement.
 
 ## Strip Behavior
 
-This strip is independently positioned by the engine. Do not describe scroll speed or camera distance. Create a transparent environmental strip that can align with or interleave with the main route strip.
+This strip is independently positioned by the engine. Do not describe scroll speed or per-strip camera changes. Create a transparent environmental strip that can align with or interleave with the main route strip.
 
 ## Traversal Plane Rules
 
@@ -21,7 +21,7 @@ This strip is independently positioned by the engine. Do not describe scroll spe
 - This strip is part of one continuous vertical scroll world, not a complete illustration or detached diorama.
 - Use identical canvas dimensions, horizon placement, camera position, framing, world scale, and bottom alignment as the other strips in the scene.
 - Use route continuation, repeated silhouettes, secondary terrain, rear structures, bridges, root networks, and design cues that align with `traversal.md`.
-- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, far-away landscapes, exaggerated scale shifts, and detached dioramas.
+- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, standalone landscapes, exaggerated scale shifts, and detached dioramas.
 
 ## Common Contents
 

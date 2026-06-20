@@ -2,17 +2,17 @@
 
 ## Purpose
 
-The atmosphere strip provides environmental air, haze, light, dust, spore veils, subtle silhouettes, and soft atmospheric cues while preserving the same side-view traversal camera and scale relationship. It supports the route without becoming a far-away landscape painting.
+The atmosphere strip provides environmental air, haze, light, dust, spore veils, subtle silhouettes, and soft atmospheric cues while preserving the same side-view traversal camera and scale relationship. It supports the route without becoming a standalone landscape painting.
 
 Role summary: dust, haze, spores, glow, light, soft environmental effects, and subtle continuity cues.
 
 ## Viewing Model
 
-Use the same camera distance, same side-view traversal plane, and same scale language as the other strips. This strip may be lighter, softer, or more atmospheric, but it should not become a separate scenic vista. The engine handles apparent depth.
+Use the same camera, same canvas size, same side-view traversal plane, and same scale language as the other strips. This strip may be lighter, softer, or more atmospheric, but it should not become a separate scenic vista. The engine handles compositing movement.
 
 ## Strip Behavior
 
-This strip is independently positioned by the engine. Do not describe scroll speed or camera distance. Create a transparent environmental strip that can composite with the terrain strips as atmosphere and route continuation.
+This strip is independently positioned by the engine. Do not describe scroll speed or per-strip camera changes. Create a transparent environmental strip that can composite with the terrain strips as atmosphere and route continuation.
 
 ## Traversal Plane Rules
 
@@ -21,7 +21,7 @@ This strip is independently positioned by the engine. Do not describe scroll spe
 - This strip is part of one continuous vertical scroll world, not a complete illustration or detached diorama.
 - Use identical canvas dimensions, horizon placement, camera position, framing, world scale, and bottom alignment as the other strips in the scene.
 - Use atmospheric silhouettes, dust veils, spore haze, light shafts, soft route cues, and broad environmental shapes that align with `traversal.md`.
-- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, far-away landscapes, exaggerated scale shifts, sky plates, and detached dioramas.
+- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, standalone landscapes, exaggerated scale shifts, sky plates, and detached dioramas.
 
 ## Common Contents
 

@@ -73,5 +73,5 @@
       "output": "output/images/scene-template-04-atmosphere-strip.png"
     }
   ],
-  "notes": "Duplicate this template for each scene. Keep scene authoring files short: story.md drives the beat, traversal.md supports the viewer experience, and layers/*.md are simple visual notes. Global docs carry the pipeline rules. Keep layer ids stable so prompt generation and website integration can be automated later."
+  "notes": "Duplicate this template for each timeline scene. Keep scene authoring files short: story.md drives the beat, traversal.md supports the viewer experience, and layers/*.md are simple strip notes. Global docs carry the pipeline rules. Keep strip ids stable so prompt generation and website integration can be automated later."
 }

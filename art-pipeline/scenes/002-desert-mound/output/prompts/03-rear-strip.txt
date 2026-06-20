@@ -1,0 +1,35 @@
+Generation command:
+Create one transparent PNG image for this single compositing strip.
+
+Scene: 002-desert-mound
+Strip: 03-rear-strip - rear-strip
+
+Shared scene context:
+Scene id: 002-desert-mound
+Scene title: Emergence Mound
+Story beat: Fungal veins that first appeared in the desert now converge toward one point beneath the sand. A small mound begins forming as if something below is pushing upward, and the first small white mushrooms appear around its edges.
+Scene memory / previous continuity: Preserve the dead desert route, cracked sand, sparse rocks, faint mycelium, side-view camera language, horizon relationship, bottom alignment, and world scale from Scene 001.
+Current visible change: The fungal veins are no longer random; they point toward a single swelling mound with early white mushrooms.
+Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
+Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
+Character presence: No characters, Sporeling, people, or animals are present.
+Asset / prop presence: No props or artifacts are assigned.
+Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
+
+Strip role:
+Behind-route terrain and repeated fungal cues support the mound focus without becoming a separate backdrop scene.
+
+Visual content:
+Render secondary cracked sand shelves, profile-view dune ridges, partly buried rocks, low dry clay banks, and rear route contours behind or around the mound alignment. Add additional early fungal growth around the mound: branching veins, hairlike hyphae, tiny spore pods, delicate bioelectric nodes, and small white mushroom clusters around the perimeter. Keep the rear forms broken and same-scale, with vein branches visually feeding the same central mound cue.
+
+Style:
+Hand-crafted fungal cyberpunk agrarian early desert phase. Sand, cracked clay, salt dust, rust-tinted buried fragments, bone-dry stone, dry roots, delicate mycelium, small white caps, and restrained vibrant glow. Ancient, sparse, mysterious, and newly active.
+
+Alignment requirements:
+Same canvas size, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips. Same full-width canvas size, same side-view camera framing, same horizon relationship, same bottom alignment, same camera distance, and no zoom differences across strips. Align to the shared vertical scroll route from top/north to bottom/south; keep the fungal veins continuous as they lead toward the mound and continue past it.
+
+Transparency requirements:
+Transparent PNG, no background plate, no sky plate, no full scene backdrop. Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, transparent openings, no rectangular backdrop, no sky plate, no cloud plate, horizon background fill, white background, black background, or full scene backdrop; rear forms remain isolated for website positioning.
+
+Negative constraints:
+No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, far-away landscape, zoom change, duplicate strip, unassigned assets, unrelated characters, Sporeling, people, animals, ornate fantasy altar, visible destination, readable symbols, dense settlement, mature fungal forest, full landscape background.

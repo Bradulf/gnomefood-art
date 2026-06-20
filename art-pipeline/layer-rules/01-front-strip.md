@@ -2,17 +2,17 @@
 
 ## Purpose
 
-The front strip provides framing compositing content: partial occlusion, edge rhythm, tactile terrain details, and environmental intimacy. It uses the same camera distance as the other strips.
+The front strip provides framing compositing content: partial occlusion, edge rhythm, tactile terrain details, and environmental intimacy. It uses the same camera and same canvas size as the other strips.
 
 Role summary: framing elements, close route fragments, interaction-adjacent details, and optional character or prop overlap when assigned.
 
 ## Viewing Model
 
-Use the same camera distance, same side-view traversal plane, and same scale language as the other strips. The engine handles apparent depth through placement and motion. This strip may overlap or frame the route, but it should not become an extreme close-up.
+Use the same camera, same canvas size, same side-view traversal plane, and same scale language as the other strips. The engine handles compositing movement through placement and motion. This strip may overlap or frame the route, but it should not become an extreme close-up.
 
 ## Strip Behavior
 
-This strip is independently positioned by the engine. Do not describe scroll speed or camera distance. Create a transparent environmental strip that frames the shared path without hiding it.
+This strip is independently positioned by the engine. Do not describe scroll speed or per-strip camera changes. Create a transparent environmental strip that frames the shared path without hiding it.
 
 ## Traversal Plane Rules
 
@@ -21,7 +21,7 @@ This strip is independently positioned by the engine. Do not describe scroll spe
 - This strip is part of one continuous traversal scene, not a separate close-up.
 - Use identical canvas dimensions, horizon placement, camera position, framing, world scale, and bottom alignment as the other strips in the scene.
 - Use side-view terrain, profile-view rocks, cropped roots, edge silhouettes, partial occlusion, open compositing space, and consistent scale.
-- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, far-away landscapes, exaggerated scale shifts, and detached dioramas.
+- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, standalone landscapes, exaggerated scale shifts, and detached dioramas.
 
 ## Common Contents
 

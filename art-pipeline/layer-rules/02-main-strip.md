@@ -8,11 +8,11 @@ Role summary: primary walkable route, main story action, and main character plac
 
 ## Viewing Model
 
-Use the same camera distance, same side-view traversal plane, and same scale language as the other strips. This is the main route-bearing strip, not a separate viewpoint.
+Use the same camera, same canvas size, same side-view traversal plane, and same scale language as the other strips. This is the main route-bearing strip, not a separate viewpoint.
 
 ## Strip Behavior
 
-This strip is independently positioned by the engine. Do not describe scroll speed or camera distance. Create a transparent environmental strip that aligns with the route from `traversal.md`.
+This strip is independently positioned by the engine. Do not describe scroll speed or per-strip camera changes. Create a transparent environmental strip that aligns with the route from `traversal.md`.
 
 ## Traversal Plane Rules
 
@@ -21,7 +21,7 @@ This strip is independently positioned by the engine. Do not describe scroll spe
 - This strip is part of one continuous vertical scroll world, not a complete illustration or detached diorama.
 - Use identical canvas dimensions, horizon placement, camera position, framing, world scale, and bottom alignment as the other strips in the scene.
 - Use side-view terrain, profile-view dunes, paths, ledges, crop rows, channels, bridges, root networks, scaffolds, and platforms.
-- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, far-away landscapes, exaggerated scale shifts, and detached dioramas.
+- Avoid aerial views, top-down maps, bird's-eye views, concept art posters, centered hero shots, standalone landscapes, exaggerated scale shifts, and detached dioramas.
 
 ## Common Contents
 
