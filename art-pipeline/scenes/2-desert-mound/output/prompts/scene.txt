@@ -1,0 +1,12 @@
+Generate this image now.
+Create a transparent PNG scene cutout for gnomefood.com.
+
+Desert Mound
+
+Depict a sparse side-view desert terrain cutout where a small mound is beginning to push up from cracked sand and dry clay. The mound should look newly formed and unsettled, with split earth, compressed sand ridges, loose grit, sparse rocks, and little white pebbles scattered around its base. Keep the scene simple and early: no buildings, no tools, no characters, no machinery, and no mature vegetation.
+
+This follows the open desert scene. The visible change is that the earth is moving for the first time, and the mound has begun to rise from the terrain. Preserve the faint fungal path, open desert sparseness, walkable side-view ground, bottom-aligned world scale, and enough terrain continuity for the mound to keep growing in later timeline scenes.
+
+Cinematic, richly detailed, hand-crafted fantasy science fiction in the earliest desert-wasteland phase of fungal cyberpunk agrarian worldbuilding. Use sun-faded ochre, ash, bleached bone, rust, cracked clay, pale sand, salt dust, dry cyan mineral hints, and small white pebble accents as local material color only. The mood should feel dry, quiet, strange, and subtly alive.
+
+Transparent PNG with transparent background and clean alpha edges. Terrain, mound, pebbles, rocks, cracked sand, and natural objects only; leave generous open upper space and an empty sky/background area on transparency so the website background shows through. No sky, no clouds, no sun, no moon, no horizon background fill, no white backdrop, no black backdrop, no full rectangular background, no full background plate, no text, no logo, no watermark, no border, no UI, no top-down view, no aerial view, no isometric view, no poster composition, no centered hero shot, no detached diorama, no characters, no animals, no buildings, no tools, no machinery, no lush vegetation, no mature mushroom forest, and no unassigned assets.

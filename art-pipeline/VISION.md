@@ -21,17 +21,43 @@ Each scene depicts one small task, discovery, ritual, or change:
 - growing the first settlement
 - expanding into a magical fungal city
 
-The image generator creates the scene assets.
+The image generator creates one daily scene asset by default.
 
 The website makes those assets move.
 
-Each timeline scene is built from four same-camera, same-size transparent compositing strips:
-- 01-front-strip
-- 02-main-strip
-- 03-rear-strip
-- 04-atmosphere-strip
+## Phase 1 Default
 
-The strips should feel like aligned compositing slices of one Rolodex scene, not separate illustrations, per-strip camera changes, or old multi-plane authoring.
+Phase 1 prioritizes daily story publishing over complex layer tuning.
+
+Each scene generates one main transparent scene image:
+
+- `output/images/scene.png`
+
+The scene image depicts the story beat as a single coherent world moment. It includes terrain, the assigned character when present, assigned props or artifacts when present, and the visible story change.
+
+The scene image does not include a sky, clouds, sun, moon, horizon background fill, white backdrop, black backdrop, or full rectangular background plate. It is terrain and objects only, with open upper space so the website background system shows through.
+
+The website provides the background system separately:
+
+- dawn
+- morning
+- noon
+- dusk
+- night
+- weather and seasonal backgrounds later
+
+The default scene output is a complete transparent cutout, not a flattened illustration and not a full backdrop.
+
+## Advanced Strip Mode
+
+Four-strip output remains an advanced/experimental mode, not the daily default:
+
+- `01-front-strip`
+- `02-main-strip`
+- `03-rear-strip`
+- `04-atmosphere-strip`
+
+When used, the strips should feel like aligned compositing slices of one Rolodex scene, not separate illustrations, per-strip camera changes, or old multi-plane authoring.
 
 All scenes share the same camera language. Preserve camera height, camera angle, horizon placement, framing, world scale, and side-view traversal plane. Do not zoom in, zoom out, rotate the camera, move the horizon, or change perspective from scene to scene.
 
@@ -40,9 +66,11 @@ Each new scene should visually evolve from the previous scene instead of restart
 The application creates the scroll, compositing movement, and Rolodex-style transition between moments.
 
 The generator should read the scene in this order:
-- `story.md` defines what happens now
-- `traversal.md` defines how the viewer moves through that story beat
-- strip files define how each compositing strip supports the traversal
+- `story.md` defines what happens now and is the main authoring file
+- `traversal.md` optionally supports how the viewer moves through that story beat
+- `assets/` and `characters.md` optionally assign props, artifacts, and reusable characters
+- `output/shared-context.md` may hold compact scene memory
+- advanced strip files are read only for legacy or experimental four-strip output
 - environment descriptions provide physical evidence of the story, but do not define the scene by themselves
 
 The generator should focus on:
@@ -51,8 +79,8 @@ The generator should focus on:
 - camera continuity across the chronicle
 - scene continuity from the previous beat
 - task-based story moments
-- shared canvas size and alignment
 - vertical scroll progression
+- transparent scene cutouts with empty sky/background space
 - a growing civilization over time
 - consequences that carry forward from earlier scenes
 

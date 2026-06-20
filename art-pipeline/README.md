@@ -2,57 +2,53 @@
 
 This folder is the manual-first art prompt pipeline for gnomefood.com.
 
-Use `VISION.md` as the highest-level project guidance document. When lower-level files disagree, prefer the model in `VISION.md`: scene equals story beat, the scroll equals timeline, and environment supports the story.
+Use `VISION.md` as the highest-level project guidance document. When lower-level files disagree, prefer the Phase 1 model in `VISION.md`: scene equals story beat, the scroll equals timeline, `story.md` is the main authoring file, and the default output is one transparent scene cutout.
 
 The site is a scroll-based visual chronicle about a fungal, cyberpunk, agrarian civilization rebuilding a post-apocalyptic world. The world begins in a desert wasteland phase and slowly evolves into a magical fungal ecosystem.
 
-The camera uses side-view terrain readability inside a vertical scroll experience. The viewer progresses down through the website timeline like moving through a Rolodex of scene strips; in world terms, this can be treated as a north-to-south route. Each appended scene is a story beat after the previous scene, showing how the civilization, world, or character journey has changed. Users are moving through time, not across disconnected locations. Locations may persist across multiple scenes, so a scene is defined by what happens in history, not by environmental novelty. Generated assets are transparent PNG compositing strips: same-camera, same-size strips of one larger walkable chronicle moment, not complete scenes, landscape paintings, concept art posters, detached dioramas, or finished illustrations.
+## Phase 1 Default
 
-All scenes use the same camera language across the chronicle. Preserve camera height, camera angle, horizon placement, framing, world scale, side-view traversal plane, and bottom alignment. Do not zoom in, zoom out, rotate the camera, move the horizon, or change perspective between scenes or strips.
+Phase 1 prioritizes daily story publishing over complex layer tuning.
 
-Each scene should visually evolve from the previous scene. Preserve terrain layout, major landmarks, world scale, and camera framing where appropriate; change story events, character actions, props, world state, visible cultivation, infrastructure, damage, repair, ritual use, or emotional tone.
+Each scene generates one main transparent scene image:
+
+- `output/images/scene.png`
+
+Each scene also has one standalone image prompt:
+
+- `output/prompts/scene.txt`
+
+The scene image should depict the story beat as a single coherent world moment. It should include terrain, the assigned character when present, assigned props or artifacts when present, and the visible story change.
+
+The scene image must not include sky, clouds, sun, moon, horizon background fill, a white or black backdrop, or a full rectangular background plate. Leave open upper space so the website background system shows through. The website provides dawn, morning, noon, dusk, night, and later weather or seasonal backgrounds separately.
+
+The scene should feel suitable for a vertical scroll chronicle: readable side-view terrain, room above and below important forms, and one visible moment in the timeline rather than a detached poster or full landscape painting.
 
 ## Folder Model
 
-Each scene should live in `scenes/` and start from the short `_template/` structure:
+Each scene should live in `scenes/` and start from `_template/`:
 
-- `story.md` defines the scene as a story beat in the infinite scrolling visual chronicle. This is the primary scene-defining document and should stay short.
-- `traversal.md` defines the shared top-to-bottom scroll route that all strips support. It should support the viewer experience without repeating global camera rules.
-- `scene.json` stores structured metadata that can be consumed by automation later.
-- `layers/` contains one short human-written visual note per compositing strip.
-- `output/shared-context.md` stores compact scene memory that is copied into every final strip prompt.
-- `output/prompts.md` stores the final prompts used for image generation.
-- `output/prompts/*.txt` stores one self-contained prompt per strip for direct pasting into ChatGPT image generation.
-- `output/images/` stores generated or curated transparent PNG assets.
+- `story.md` defines the scene as a story beat. This is the primary authoring file and should stay short.
+- `traversal.md` is optional supporting context for how the viewer moves through the beat.
+- `scene.json` stores structured metadata for automation.
+- `output/shared-context.md` stores compact scene memory copied into final prompts.
+- `output/prompts/scene.txt` stores the self-contained Phase 1 prompt for direct image generation.
+- `output/images/scene.png` is the expected final transparent PNG image path.
 
 Optional files such as `scene.md`, `scene-style.md`, `characters.md`, or `assets/*.md` can be added only when a scene needs more detail than the short daily authoring files provide.
 
-Global strip rules live in `layer-rules/`. These files define reusable behavior for each compositing strip: purpose, compositing behavior, common contents, avoid lists, transparency requirements, composition guidance, detail level, and character guidance.
-
-Scene story files live in `scenes/[scene]/story.md`. A scene is a moment in the civilization's history, not just a location. For daily use, `story.md` only needs `What Happens`, `What Changed`, and `What Carries Forward`. The global docs define the deeper continuity, camera, and world-evolution rules.
-
-Scene traversal files live in `scenes/[scene]/traversal.md`. This file should stay short: `Route`, `Viewer Feeling`, and `Shared Visual Cue`. It supports the viewer experience by describing how the scroll moves through the story beat from `story.md`.
-
-Scene-specific strip descriptions live in `scenes/[scene]/layers/`. These files should be simple visual notes with `What This Strip Shows`. They inherit the matching global strip rule and do not need to repeat global camera, transparency, traversal, or compositing rules.
+Reusable characters live in `characters/[character-id]/`. Character files define persistent identity, visual rules, pose options, evolution over time, negative prompts, structured YAML references, and reference images. Do not duplicate character identity inside scene files; assign the character and let prompt construction read the reusable character files.
 
 Scene asset files live in `scenes/[scene]/assets/`. These files are optional:
 
 - `assets/artifacts.md` defines story objects, landmarks, machines, shrines, crop clusters, discoveries, or other narrative objects.
 - `assets/props.md` defines smaller supporting objects such as tools, baskets, cables, sacks, markers, irrigation pieces, or seed trays.
 
-Artifacts and props are not strips. Each asset must specify which strip it belongs to: `01-front-strip`, `02-main-strip`, `03-rear-strip`, or `04-atmosphere-strip`. Prompt generation includes each asset only in its assigned strip. If no asset is assigned to a strip, no artifact or prop should be included in that strip prompt.
-
-Reusable characters live in `characters/[character-id]/`. Character files define persistent identity, visual rules, pose options, evolution over time, negative prompts, structured YAML references, and reference images.
-
-For characters with reference assets, the prompt builder should read the character YAML first and explicitly name the reference image in generated prompts. Reference images are identity guides: preserve the character identity and adapt only scene-specific pose, scale, emotion, direction, environmental effects, and evolution-stage details.
-
-Generated prompts live in `scenes/[scene]/output/prompts.md`, with one copy of each prompt also written to `scenes/[scene]/output/prompts/*.txt`. Shared scene memory lives in `scenes/[scene]/output/shared-context.md`. Prompts are assembled manually for now from `VISION.md`, the world, global style, camera language, global strip rules, `story.md`, `traversal.md`, supporting scene files, optional scene assets, optional character references, and scene-specific strip descriptions.
-
-Every final strip prompt must be self-contained. A user should be able to paste only `output/prompts/02-main-strip.txt`, for example, into ChatGPT image generation and get a correct single transparent PNG strip without pasting the rest of `prompts.md` or any scene-wide header. Keep the prompt action direct: create the image, not review the prompt.
+In Phase 1, assigned assets and props can appear in the single `scene.png` cutout when they support the story beat. Strip-specific assignment remains available only for advanced four-strip output.
 
 ## Daily Scene Authoring
 
-Scene files should be short. The global pipeline docs carry the rules, constraints, camera model, transparency requirements, strip responsibilities, and prompt-building behavior.
+Scene files should be short. The global pipeline docs carry the rules, constraints, camera model, transparency requirements, and prompt-building behavior.
 
 `story.md` drives the scene. It only needs:
 
@@ -60,15 +56,11 @@ Scene files should be short. The global pipeline docs carry the rules, constrain
 - `What Changed`
 - `What Carries Forward`
 
-`traversal.md` supports the viewer experience. It only needs:
+`traversal.md` is optional. Use it when the scroll route needs clarification:
 
 - `Route`
 - `Viewer Feeling`
 - `Shared Visual Cue`
-
-Each `layers/*.md` file is a simple visual note. It only needs:
-
-- `What This Strip Shows`
 
 Do not repeat global rules in scene files unless the scene intentionally needs a rare override.
 
@@ -76,7 +68,7 @@ Do not repeat global rules in scene files unless the scene intentionally needs a
 
 Each scene is one beat in an infinite scrolling visual chronicle. Scenes should not be authored as interchangeable places or static environment concepts. They should answer what happens now, what changed since the previous scene, and what the viewer should carry into the next scene.
 
-`story.md` is the source of truth for scene definition. `traversal.md`, `layers/`, and any optional `scene.md`, `scene-style.md`, `assets/`, or `characters.md` files should support that story beat. If an environment detail does not clarify the beat, reveal a consequence, guide traversal, or preserve continuity, it is secondary.
+`story.md` is the source of truth for scene definition. `traversal.md`, `scene.md`, `scene-style.md`, `assets/`, `characters.md`, and legacy `layers/` files should support that story beat. If an environment detail does not clarify the beat, reveal a consequence, guide traversal, or preserve continuity, it is secondary.
 
 Do not require every new scene to introduce a new place. A location can recur across several story beats: first discovery, repair, cultivation, ritual use, expansion, damage, governance, or transformation. The important progression is historical and emotional, not environmental variation.
 
@@ -85,148 +77,62 @@ The downward scroll is the civilization's timeline. As each scene is appended af
 When authoring or prompting Scene N, review Scene N-1 before inventing new composition:
 
 - Scene N-1 `story.md`
-- Scene N-1 `traversal.md`
-- Scene N-1 `output/prompts.md`, if present
+- Scene N-1 `traversal.md`, if present
+- Scene N-1 `output/shared-context.md`, if present
+- Scene N-1 `output/prompts/scene.txt`, if present
 - Scene N-2 optionally, if available
 - Current world phase
 - Current story beat
 
 Use that memory to keep terrain layout, landmarks, route direction, scale, camera framing, and carry-forward consequences coherent.
 
-Every new scene should advance at least one of these:
-
-- The civilization's ecology, agriculture, technology, magic, architecture, rituals, or social organization.
-- A character's journey, condition, relationship to the world, or role in the civilization.
-- A visible consequence from an earlier scene that changes the viewer's understanding of the route.
-
-The broad world evolution path is:
-
-- Dead desert.
-- First mycelium.
-- Sporeling emergence.
-- First cultivation.
-- First garden bed.
-- Early settlement.
-- Agricultural village.
-- Fungal infrastructure.
-- Crystal-powered agriculture.
-- Cyberpunk fungal kingdom.
-
-## Strip Rules
-
-Each strip is generated as an isolated full-width transparent PNG asset. The website engine positions, scales, and animates strips to create scroll movement, layered compositing, and Rolodex motion. Prompts must not describe separate per-strip viewpoints, a finished flat scene plate, a complete composite scene, a poster, or a centered hero-shot illustration.
-
-Global strip-rule files define inherited behavior by compositing responsibility:
-
-- `layer-rules/01-front-strip.md`: framing elements, close route fragments, interaction-adjacent details, and optional character or prop overlap when assigned.
-- `layer-rules/02-main-strip.md`: primary walkable route, main story action, and main character placement when assigned.
-- `layer-rules/03-rear-strip.md`: supporting terrain, repeated route cues, secondary structures, and continuity elements.
-- `layer-rules/04-atmosphere-strip.md`: dust, haze, spores, glow, light, soft environmental effects, and subtle continuity cues.
-
-Scene strip files should describe only their own scene-specific visual content:
-
-- `01-front-strip.md`: framing elements, close route fragments, interaction-adjacent details, cropped forms, and optional assigned overlap.
-- `02-main-strip.md`: primary walkable route and main path forms.
-- `03-rear-strip.md`: supporting terrain, repeated route cues, secondary structures, and continuity elements.
-- `04-atmosphere-strip.md`: dust, haze, spores, glow, light, soft environmental effects, and subtle continuity cues.
-
-Do not describe strips as per-strip camera changes. Do not describe strips as old multi-plane authoring. All strips remain same-camera, same-size compositing slices.
-
-## Traversal Beats
-
-Each scene should be authored as one shared top-to-bottom scroll traversal moment in the timeline, not as four unrelated terrain slices and not as four separate viewpoints. The viewer should feel like they are moving through a story beat beside a small third-person character or implied civilization-level point of view.
-
-Use `traversal.md` to define:
-
-- The implied character route through the story beat.
-- Top-to-bottom scroll direction, treated as north-to-south movement in world space.
-- Where the walkable path begins and exits.
-- What the viewer should understand or feel while moving through the beat.
-- How front, main, rear, and atmosphere strips support the same route.
-- What visual cue ties all strips together.
-- What should remain consistent across all strips.
-
-Strip-specific files should not redefine the whole route or invent a separate environmental premise. They should explain how their strip supports the shared traversal: front strip frames or lightly overlaps it, main strip carries the clearest walkable route, rear strip repeats and supports route cues, and atmosphere strip reinforces air, light, spores, and mood.
-
-Story artifacts belong in `assets/artifacts.md`, not in the strip system. An artifact can appear in any strip when assigned there, or be omitted entirely.
-
 ## Camera Rules
 
-Camera, traversal plane, and composition rules live in `camera-language.md`. All prompts should inherit the same-camera, same-size side-view strip model, wide website-strip framing, transparent PNG expectations, and vertical scroll route guidance.
+Camera, traversal plane, and composition rules live in `camera-language.md`. Phase 1 prompts should use the side-view chronicle camera while producing one complete transparent cutout instead of four layer strips.
 
-Every generated prompt should include these reminders:
+Every Phase 1 prompt should include these reminders:
 
 ```text
-This image is a same-camera, same-size side-view compositing strip for a Rolodex visual chronicle, not a complete scene.
-The viewer scrolls downward through time; the implied route enters near the top/north of the timeline scene and exits near the bottom/south.
+Create one transparent PNG image for this complete scene cutout.
+This is one coherent story beat for a vertical scroll visual chronicle, not a full background plate.
+Leave open upper space and an empty sky/background area so the website background system shows through.
 ```
 
-Every generated prompt should also preserve the same camera height, camera angle, horizon placement, framing, world scale, canvas dimensions, bottom alignment, and route continuity across all strips.
+The final image must preserve consistent world scale and side-view readability across the chronicle. Do not use top-down, aerial, isometric, poster, centered hero-shot, detached diorama, or complete landscape painting composition.
 
-## Traversal Plane Rules
+## Advanced Strip Mode
 
-- Terrain is viewed from the side.
-- Terrain should support the top-to-bottom scroll route without becoming top-down or map-like.
-- All strips use the same camera.
-- All strips use the same side-view traversal plane.
-- All strips use identical canvas dimensions.
-- All strips use identical horizon placement.
-- All strips use identical camera position and framing.
-- All strips use identical world scale and bottom alignment.
-- The path should align across all strips.
-- Strips are assembled later by the engine.
-- The engine handles scroll, compositing movement, and Rolodex motion.
-- Assets should include enough terrain continuation and transparent breathing room for code-driven traversal movement.
-- Assets should not look like complete illustrations.
-- Assets should not look like concept art posters.
-- Assets should not look like aerial views.
-- Assets should not look like top-down maps.
-- Assets should not look like bird's-eye views.
-- Assets should not look like centered hero shots.
-- Assets should not look like detached dioramas or standalone landscape paintings.
+Existing strip support remains available as advanced/legacy mode. Use it only when a scene needs experimental four-strip compositing:
 
-Preferred composition:
+- `01-front-strip`
+- `02-main-strip`
+- `03-rear-strip`
+- `04-atmosphere-strip`
 
-- Same camera.
-- Same side-view traversal plane.
-- Consistent path alignment.
-- Consistent scale across strips.
-- Layered compositing strips.
-- Vertical scene progression.
-- Open transparent space for compositing.
-- Extra terrain beyond the focal action.
-- Visual room above and below important content.
-- Natural continuation of terrain into the next scroll moment.
-- Readable silhouettes.
-- Slight overlap only when useful.
-
-Avoid top-down perspective, isometric perspective, aerial views, bird's-eye views, map-like terrain, portrait framing, centered hero shots, concept art poster composition, standalone landscape paintings, exaggerated scale changes between strips, and full flat scene plates unless a future scene explicitly asks for a non-chronicle asset.
+Global strip rules live in `layer-rules/`. Scene-specific strip descriptions can live in `scenes/[scene]/layers/` or at the scene root for older folders. Strip prompts remain same-camera, same-size transparent PNG compositing slices. They are not the daily Phase 1 output.
 
 ## Workflow
 
 1. Duplicate `scenes/_template/` into a new scene folder.
-2. Fill out the short daily authoring files: `story.md`, `traversal.md`, and `layers/*.md`.
-3. Read and revise `story.md` before `traversal.md` so the route supports the story beat.
-4. Use `characters.md` to assign reusable characters to strips only when needed.
-5. Use `assets/artifacts.md` and `assets/props.md` to assign optional scene assets to specific strips.
-6. Keep strip descriptions in `layers/` as simple visual notes.
-7. Write compact reusable memory into `output/shared-context.md`: scene id, scene title, story beat, previous continuity, current visible change, alignment law, transparency requirements, character presence or absence, asset/prop presence or absence, and global negative constraints.
-8. Build final generation prompts in `output/prompts.md`, combining global strip rules with `story.md`, `traversal.md`, previous-scene memory, assigned scene assets, scene strip descriptions, and reading character YAML and reference images only for strips that include a character.
-9. Copy the same four self-contained prompts into `output/prompts/01-front-strip.txt`, `output/prompts/02-main-strip.txt`, `output/prompts/03-rear-strip.txt`, and `output/prompts/04-atmosphere-strip.txt`.
-10. Generate transparent PNG strips manually.
-11. Save approved assets in `output/images/`.
-12. Record filenames, prompt versions, reference images, and notes in the scene files.
+2. Fill out `story.md`.
+3. Fill out `traversal.md` only if the scroll route needs supporting detail.
+4. Add `characters.md`, `assets/artifacts.md`, or `assets/props.md` only when the scene needs assigned characters or objects.
+5. Write compact reusable memory into `output/shared-context.md`: scene id, scene title, story beat, previous continuity, current visible change, composition law, transparency requirements, character presence or absence, asset/prop presence or absence, and global negative constraints.
+6. Build one final generation prompt in `output/prompts/scene.txt`.
+7. Generate one transparent PNG manually.
+8. Save the approved asset as `output/images/scene.png`.
+9. Record filenames, prompt versions, reference images, and notes in the scene files.
 
-The pipeline should stay simple while the visual language is still being discovered, but filenames, scene metadata, and strip boundaries should remain consistent so the process can be automated later.
+No image generation API code belongs in this pipeline yet.
 
 ## Scene Validation
 
 Before image generation or website integration, validate a scene folder:
 
 ```sh
-node art-pipeline/scripts/validate-scene.js art-pipeline/scenes/002-desert-mound
+node art-pipeline/scripts/validate-scene.js art-pipeline/scenes/_template
 ```
 
-The validator uses only Node.js built-in modules. It checks that required scene files exist, optional `scene.json` parses when present, all four strip briefs are present either in `layers/` or at the scene root, `output/shared-context.md` exists, `output/prompts.md` references every strip, each `output/prompts/*.txt` file exists, each strip prompt includes the generation command, inline shared scene context, transparent PNG requirements, and shared camera/canvas alignment requirements, stale multi-plane/camera terminology is absent, and non-first scenes include continuity or change language in `story.md`.
+The validator uses only Node.js built-in modules. When `output/prompts/scene.txt` exists, it validates Phase 1 scene-cutout mode: required scene files, optional `scene.json` parsing, `output/shared-context.md`, the standalone scene prompt, transparent PNG requirements, forbidden background rules, story-beat language, and `output/images/scene.png` references. `output/prompts.md` is optional in Phase 1.
 
-The script prints a PASS/FAIL line for each check and exits with a nonzero status when any validation fails.
+When `output/prompts/scene.txt` is absent, it falls back to legacy four-strip validation so existing scene folders can continue to validate.

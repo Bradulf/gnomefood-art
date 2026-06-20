@@ -1,0 +1,12 @@
+Generate this image now.
+Create a transparent PNG scene cutout for gnomefood.com.
+
+[Scene title]
+
+[One concise visual description paragraph. Describe one coherent world moment made from side-view readable terrain, assigned character if present, assigned props or artifacts if present, and the visible story change.]
+
+[One concise story/continuity paragraph if needed. Include the story beat, what changed, what carries forward, and any relevant previous-scene continuity.]
+
+[One concise style paragraph from global-style.md and optional scene-style.md. Keep the image tactile, chronicle-driven, fungal cyberpunk agrarian, and appropriate to the current world phase.]
+
+Transparent PNG with transparent background and clean alpha edges. Terrain, characters, props, structures, and artifacts only; leave open upper space and an empty sky/background area on transparency so the website background shows through. No sky, no clouds, no sun, no moon, no horizon background fill, no white backdrop, no black backdrop, no full rectangular background, no full background plate, no text, no logo, no watermark, no border, no UI, no top-down view, no aerial view, no isometric view, no poster composition, no centered hero shot, no detached diorama, no unrelated characters, and no unassigned assets.

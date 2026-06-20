@@ -1,9 +1,9 @@
 {
-  "id": "scene-template",
-  "title": "Scene Title",
+  "id": "3-mound-opening",
+  "title": "Mound Opening",
   "phase": "desert-wasteland",
   "world_evolution_phase": "dead desert",
-  "order": 0,
+  "order": 3,
   "status": "draft",
   "story": "story.md",
   "traversal": "traversal.md",
@@ -25,10 +25,10 @@
     ]
   },
   "continuity": {
-    "previous_scene": null,
-    "previous_scene_story": null,
-    "previous_scene_traversal": null,
-    "previous_scene_prompts": null,
+    "previous_scene": "../2-desert-mound",
+    "previous_scene_story": "../2-desert-mound/story.md",
+    "previous_scene_traversal": "../2-desert-mound/traversal.md",
+    "previous_scene_prompts": "../2-desert-mound/output/prompts/scene.txt",
     "optional_second_previous_scene": null,
     "preserve": [
       "side-view camera language",
@@ -51,5 +51,5 @@
   "assets": {},
   "characters": [],
   "advanced_legacy_strips": "Use art-pipeline/layer-rules/ and add scene-local strip files only when four-strip output is explicitly requested.",
-  "notes": "Duplicate this template for each timeline scene. Phase 1 daily output is output/prompts/scene.txt -> output/images/scene.png. Keep story.md as the primary authoring file; traversal.md is optional support. Legacy strip files are advanced/experimental, not default daily output."
+  "notes": "Phase 1 scene prompt generated from story.md. Daily output is output/prompts/scene.txt -> output/images/scene.png. Legacy strip files are not used for this scene."
 }

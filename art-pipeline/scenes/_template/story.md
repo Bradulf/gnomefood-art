@@ -2,6 +2,6 @@
 
 ## What Happens
 
-## What Changed Since The Previous Scene
+## What Changed
 
 ## What Carries Forward

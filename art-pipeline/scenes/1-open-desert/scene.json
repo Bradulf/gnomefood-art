@@ -1,6 +1,6 @@
 {
-  "id": "scene-template",
-  "title": "Scene Title",
+  "id": "1-open-desert",
+  "title": "Open Desert",
   "phase": "desert-wasteland",
   "world_evolution_phase": "dead desert",
   "order": 0,
@@ -51,5 +51,5 @@
   "assets": {},
   "characters": [],
   "advanced_legacy_strips": "Use art-pipeline/layer-rules/ and add scene-local strip files only when four-strip output is explicitly requested.",
-  "notes": "Duplicate this template for each timeline scene. Phase 1 daily output is output/prompts/scene.txt -> output/images/scene.png. Keep story.md as the primary authoring file; traversal.md is optional support. Legacy strip files are advanced/experimental, not default daily output."
+  "notes": "Phase 1 scene prompt generated from story.md. Daily output is output/prompts/scene.txt -> output/images/scene.png. Legacy strip files are not used for this scene."
 }

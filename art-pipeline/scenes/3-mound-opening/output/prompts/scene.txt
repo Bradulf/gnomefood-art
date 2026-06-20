@@ -1,0 +1,12 @@
+Generate this image now.
+Create a transparent PNG scene cutout for gnomefood.com.
+
+Mound Opening
+
+Depict a sparse side-view desert terrain cutout where the small mound from the previous scene has split open. The cracked mound should be the focal point: dry clay plates pulled apart, compressed sand ridges, scattered little white pebbles, and a faint blue glow emerging from the opening inside. Little white mushrooms grow out of the mound cracks and around the split edges, still small and early, with the faint fungal path continuing through the surrounding cracked sand.
+
+This timeline scene follows the rising desert mound. The visible change is that something beneath the desert is waking: the mound is no longer just moving upward, it has opened and revealed blue inner light and new fungal life. Preserve the sparse open desert, mound shape, pebbles, faint fungal path, walkable side-view ground, bottom-aligned world scale, and enough terrain continuity for the blue glow and fungal growth to carry forward.
+
+Cinematic, richly detailed, hand-crafted fantasy science fiction in the early desert-wasteland phase of fungal cyberpunk agrarian worldbuilding. Use sun-faded ochre, ash, bleached bone, rust, cracked clay, pale sand, salt dust, soft fungal white, and a restrained faint blue bioelectric glow as local material color only. The mood should feel dry, quiet, mysterious, fragile, and newly awake.
+
+Transparent PNG with transparent background and clean alpha edges. Terrain, split mound, pebbles, small mushrooms, faint fungal path, cracked sand, and blue inner glow only; leave generous open upper space and an empty sky/background area on transparency so the website background shows through. No sky, no clouds, no sun, no moon, no horizon background fill, no white backdrop, no black backdrop, no full rectangular background, no full background plate, no text, no logo, no watermark, no border, no UI, no top-down view, no aerial view, no isometric view, no poster composition, no centered hero shot, no detached diorama, no characters, no animals, no buildings, no tools, no machinery, no lush vegetation, no mature mushroom forest, and no unassigned assets.

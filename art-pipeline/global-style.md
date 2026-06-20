@@ -4,60 +4,59 @@ Use this file for art direction that should remain consistent across the whole g
 
 ## Overall Direction
 
-Create cinematic, richly detailed, hand-crafted fantasy science fiction with fungal cyberpunk agrarian worldbuilding. The images should feel tactile, chronicle-driven, and suitable for a vertical scroll visual timeline using side-view compositing strips.
+Create cinematic, richly detailed, hand-crafted fantasy science fiction with fungal cyberpunk agrarian worldbuilding. The images should feel tactile, chronicle-driven, and suitable for a vertical scroll visual timeline.
 
-The visual language is same-camera, same-size side-view timeline scenes split into compositing strips, not complete scenes, standalone illustrations, landscape paintings, concept art posters, centered hero shots, or detached dioramas on white or blank backgrounds.
+Phase 1 images are single transparent scene cutouts: one coherent story beat made from terrain, character when assigned, props or artifacts when assigned, and visible story change. They are not full background plates, complete landscape paintings, concept art posters, centered hero shots, or detached dioramas on white or blank backgrounds.
 
 ## Asset Requirements
 
-All generated strip assets should be:
+All generated Phase 1 scene assets should be:
 
-- Full-width transparent PNGs.
-- Isolated compositing strips, not finished backdrop composites.
-- Side-view timeline-scene slices for the website compositor.
-- Designed to work over other strips without a hard rectangular background.
-- Horizontally expansive, with visual interest across the full width.
-- Aligned to the shared top-to-bottom scroll route when the strip contains terrain.
-- Cleanly cut out on transparency.
+- Transparent PNGs.
+- Cleanly cut out on alpha.
+- One complete terrain/object story beat.
+- Designed for the website background system to show through.
+- Horizontally readable for full-width website placement.
+- Suitable for vertical scroll chronicle progression.
+- Side-view terrain, not top-down or map-like.
 - Free of text, logos, UI, watermarks, borders, and frames.
+
+The generated image must not include:
+
+- Sky.
+- Clouds.
+- Sun.
+- Moon.
+- Horizon background fill.
+- White backdrop.
+- Black backdrop.
+- Full rectangular background.
+- Full background plate.
 
 ## Composition Rules
 
-Prompts should describe only the target compositing strip. Do not ask the model to render a complete scene with all strips flattened together.
-
-## Terrain Perspective Rules
-
-- Terrain is viewed from the side.
-- Terrain should support a top-to-bottom scroll route without becoming top-down or map-like.
-- Strips are slices of a larger timeline scene.
-- Strips are assembled later by the engine.
-- Assets should not look like complete illustrations.
-- Assets should not look like concept art posters.
-- Assets should not look like aerial views.
-- Assets should not look like top-down maps.
-- Assets should not look like bird's-eye views.
-- Assets should not look like centered hero shots.
-- Assets should not look like detached dioramas sitting on white or blank backgrounds.
+Prompts should describe one coherent scene cutout. Do not ask the model to render a complete sky/background scene. The website supplies dawn, morning, noon, dusk, night, and later weather or seasonal backgrounds separately.
 
 Use phrases such as:
 
-- "isolated transparent PNG compositing strip"
-- "full-width visual chronicle asset"
-- "side-view timeline-scene slice for the website compositor"
-- "the viewer scrolls downward through time; the implied route enters near the top/north of the timeline scene and exits near the bottom/south"
-- "transparent background"
-- "no sky fill outside the described silhouettes"
-- "do not render a complete backdrop scene"
-- "environmental slice, not a concept art poster"
-- "terrain slice of a larger walkable world, not a detached diorama"
+- "transparent PNG scene cutout"
+- "one coherent story beat in the vertical scroll chronicle"
+- "terrain and objects only"
+- "assigned character if present"
+- "assigned props or artifacts if present"
+- "visible story change"
+- "leave open upper space"
+- "empty sky/background area on transparency"
+- "no sky, clouds, sun, moon, horizon fill, or background plate"
 
 Avoid phrases such as:
 
 - "full scene"
 - "complete landscape"
 - "finished backdrop"
+- "sky plate"
+- "background plate"
 - "poster"
-- "illustration split into old multi-plane authoring"
 - "bird's-eye view"
 - "aerial view"
 - "top-down map"
@@ -82,8 +81,12 @@ Common materials include:
 
 ## Color Evolution
 
-Early scenes should emphasize sun-faded ochre, rust, ash, bleached bone, dry cyan reflections, and sparse toxic neon.
+Early scenes should emphasize sun-faded ochre, rust, ash, bleached bone, dry cyan reflections, and sparse toxic neon as local material color, not as a rendered sun or sky.
 
 Later scenes may introduce deeper greens, fungal whites, luminous blues, spore gold, wet soil browns, violet shadows, and magical bioluminescence.
 
 Avoid making every scene the same palette. Let each scene's `scene-style.md` define its own color temperature, saturation, and magical intensity.
+
+## Advanced Strip Mode
+
+Existing strip assets remain supported for advanced/legacy compositing experiments. Strip prompts should still produce isolated transparent PNG compositing strips, not finished backdrop composites. Strip mode is not the Phase 1 daily default.

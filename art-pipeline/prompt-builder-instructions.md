@@ -1,63 +1,59 @@
 # Prompt Builder Instructions
 
-This document describes how to turn story beat, traversal, and strip briefs into final AI art prompts for transparent compositing strips that all support one shared vertical timeline scene.
+This document describes how to turn a story beat into the Phase 1 image prompt for one transparent scene cutout.
 
 No image generation API code belongs here yet. This pipeline starts as a manual workflow using structured files that can be automated later.
 
+## Phase 1 Prompt Model
+
+Phase 1 prioritizes daily story publishing. The default output is one complete transparent scene cutout:
+
+- Prompt: `output/prompts/scene.txt`
+- Image: `output/images/scene.png`
+
+The image should depict the story beat as one coherent world moment. It should include terrain, the assigned character when present, assigned props or artifacts when present, and the visible story change.
+
+The website provides the background system separately: dawn, morning, noon, dusk, night, and later weather or seasonal backgrounds. The generated scene image must leave the upper/background area empty and transparent so those website backgrounds show through.
+
 ## Inputs
 
-For each strip prompt, read:
+For the Phase 1 scene prompt, read:
 
 1. `VISION.md`
 2. `world.md`
 3. `global-style.md`
 4. `camera-language.md`
-5. `layer-rules/*.md`
-6. Scene N-1 `story.md`, if present
-7. Scene N-1 `traversal.md`, if present
-8. Scene N-1 `output/shared-context.md`, if present
-9. Scene N-1 `output/prompts.md`, if present
-10. Scene N-2 `story.md` and `traversal.md`, optionally if available
-11. The current scene's `story.md`
-12. The current scene's `traversal.md`
-13. The current scene's `scene.md`
-14. The current scene's `scene-style.md`
-15. The current scene's `assets/artifacts.md` and `assets/props.md`, if present
-16. The current scene's `characters.md`, if present
-17. Referenced character YAML and visual files, if characters are used
-18. The current scene-specific strip file in `layers/`
+5. Scene N-1 `story.md`, if present
+6. Scene N-1 `traversal.md`, if present
+7. Scene N-1 `output/shared-context.md`, if present
+8. Scene N-1 `output/prompts/scene.txt`, if present
+9. Scene N-2 `story.md` and `traversal.md`, optionally if available
+10. The current scene's `story.md`
+11. The current scene's `traversal.md`, if present
+12. The current scene's `scene.md`, if present
+13. The current scene's `scene-style.md`, if present
+14. The current scene's `assets/artifacts.md` and `assets/props.md`, if present
+15. The current scene's `characters.md`, if present
+16. Referenced character YAML and visual files, if characters are used
 
-For a specific strip prompt, use the matching global strip rule:
+Read `VISION.md` as highest-level project guidance. If a lower-level file implies that the scene is primarily a place, environmental variation, strip exercise, or full background painting, resolve the conflict in favor of `VISION.md`: scene equals story beat, scroll equals timeline, `story.md` is primary, and Phase 1 output is one transparent scene cutout.
 
-- `layers/01-front-strip.md` uses `layer-rules/01-front-strip.md`
-- `layers/02-main-strip.md` uses `layer-rules/02-main-strip.md`
-- `layers/03-rear-strip.md` uses `layer-rules/03-rear-strip.md`
-- `layers/04-atmosphere-strip.md` uses `layer-rules/04-atmosphere-strip.md`
+Read `story.md` before every other scene-local document. Treat it as the scene's source of truth: the story beat, what changed from the previous scene, character focus, character action, world impact, emotional beat, and continuity notes for the next scene.
 
-Read `VISION.md` as highest-level project guidance. If a lower-level file implies that a scene is primarily a place or environmental variation, resolve the conflict in favor of `VISION.md`: scene equals story beat, scroll equals timeline, and environment supports the story.
+Read `traversal.md` only as supporting movement context. It should reveal or support what happens in `story.md`; it should not redefine the scene as a new environment. Read `scene.md`, `scene-style.md`, assets, characters, and legacy strip files as supporting context after the story beat is clear.
 
-Read `scene.json` as structured metadata for scene id, title, phase, traversal file, optional asset files, strip ids, outputs, and character references.
+Use previous-scene memory before writing the current prompt. Preserve terrain layout, major landmarks, world scale, side-view camera language, route direction, and carry-forward consequences where appropriate.
 
-Use previous-scene memory before writing the current prompts. When generating Scene N, review Scene N-1 `story.md`, Scene N-1 `traversal.md`, Scene N-1 `output/shared-context.md` if present, Scene N-1 `output/prompts.md` if present, Scene N-2 optionally, the current world phase, and the current story beat. Preserve terrain layout, major landmarks, world scale, camera framing, route direction, horizon placement, bottom alignment, and carry-forward consequences where appropriate.
+## Characters And Assets
 
-Read `story.md` before every other scene-local document. Treat `story.md` as the scene's source of truth in the infinite scrolling visual chronicle: the story beat, what changed from the previous scene, character focus, character action, world impact, emotional beat, and continuity notes for the next scene. Use it to make sure the traversal and strip prompts describe a moment in the civilization's timeline, not only a location.
-
-Then read `traversal.md` as the movement contract for that story beat. The traversal should reveal or support what happens in `story.md`; it should not redefine the scene as a new environment. Read `scene.md`, `scene-style.md`, assets, characters, and strip files as supporting context after the story beat and traversal are clear.
-
-Locations may persist across multiple scenes. Do not force environmental variation when the story beat is about repair, repetition, ritual, growth, consequence, or return to a known place.
-
-The current scene should visually evolve from the previous scene instead of restarting from a new composition. Prioritize what changed, who is present, what action is occurring, what world progress occurred, and what emotional beat is conveyed.
-
-Read `assets/artifacts.md` and `assets/props.md` when present. These files define optional scene assets, not strips.
+Read `assets/artifacts.md` and `assets/props.md` when present. These files define optional scene assets, not default strips.
 
 - `assets/artifacts.md` can define story objects such as machines, shrines, ritual tools, crop clusters, route discoveries, landmarks, or other narrative objects.
 - `assets/props.md` can define smaller supporting objects such as tools, baskets, cables, sacks, irrigation pieces, seed trays, or markers.
-- Each artifact or prop must specify which strip it belongs to: `01-front-strip`, `02-main-strip`, `03-rear-strip`, or `04-atmosphere-strip`.
-- Include an artifact or prop only in prompts for its assigned strip.
-- If no artifact or prop is assigned to the current strip, do not include it in that strip prompt.
-- Do not duplicate artifacts or props across strips unless the asset file explicitly defines multiple separate appearances.
+- Include assigned assets or props in `scene.png` only when they support the story beat.
+- Do not invent unrelated props just to fill space.
 
-If `characters.md` assigns a reusable character to the current strip, also read that character's files from `characters/[character-id]/`:
+If `characters.md` assigns a reusable character to the scene, also read that character's files from `characters/[character-id]/`:
 
 - `reference/[character-id]-character.yaml`
 - The reference image named by the YAML `reference_image.filename` field
@@ -68,53 +64,77 @@ If `characters.md` assigns a reusable character to the current strip, also read 
 - `negative-prompts.md`
 - Any additional selected files in `reference/`
 
-Do not read character files into a strip prompt when the character is not assigned to that strip.
+Do not rewrite character identity in the scene prompt. Preserve identity from the reusable character files and adapt only pose, scale, emotion, direction, environmental effects, and evolution-stage details.
+
+## Character Reference Modes
+
+Final Phase 1 prompts are written for Manual ChatGPT Image Mode by default. They must be pasteable into ChatGPT image generation by themselves.
+
+Manual ChatGPT Image Mode:
+
+- Do not include local repo paths in `output/prompts/scene.txt` as if the image model can read them.
+- If a reusable character has a visual reference, include this plain instruction: "Optional: upload the Sporeling reference image when generating for stronger identity preservation."
+- Include the reusable character's identity details inline so the prompt still works without the reference image.
+- Keep the prompt direct and image-first, not a document review.
+
+Repo/Codex Context Mode:
+
+- Local file paths may appear in `output/shared-context.md`, `characters.md`, `scene.json`, or internal notes.
+- Codex may use local file paths while reading repo context and building the prompt.
+- Do not rely on local file paths inside the final pasteable `output/prompts/scene.txt`.
 
 ## Art-Director Prompt Mode
 
-Use art-director prompt mode for final image prompts. The pipeline architecture stays the same: read the same source files, preserve strip boundaries, include only assigned assets and assigned characters, and write final prompts to `output/prompts.md`. The change is prompt style, not source structure.
+Use concise art-director prompt mode for final image prompts. The prompt must read like a direct image request, not a structured review document.
 
-Art-director prompts should feel like concise visual direction. They should be shorter than the source material, avoid defensive repetition, and put image-making information first. Do not paste long explanations from `camera-language.md`, `traversal.md`, or layer rules into every strip. Compress inherited rules into compact alignment and transparency lines.
+Prioritize the final scene prompt in this order:
 
-Prioritize each final strip prompt in this order:
+1. First line: `Generate this image now.`
+2. Second line: `Create a transparent PNG scene cutout for gnomefood.com.`
+3. Short scene title.
+4. One concise visual description paragraph.
+5. One concise story/continuity paragraph if needed.
+6. One concise style paragraph.
+7. One compact transparency/negative paragraph.
 
-1. Scene story beat.
-2. Strip role.
-3. Visual content.
-4. Shared alignment rules.
-5. Transparency requirements.
-6. Short negative list.
+Keep the required rules compact:
 
-Keep the core rules present, but write them compactly:
-
-- Same canvas size across all strips.
-- Same camera framing across all strips.
-- Same horizon relationship across all strips.
-- Same camera height and camera angle across strips.
-- Same bottom alignment across all strips.
-- Same camera across all strips.
-- Same world scale across all strips.
 - Transparent PNG.
-- Compositing strip, not a complete scene.
-- Vertical scroll progression from top/north to bottom/south.
-- No top-down or aerial view.
-- No zoom differences between strips.
-- No camera rotation or perspective change.
+- Clean alpha edges.
+- One complete scene cutout.
+- Side-view chronicle composition.
+- Terrain and objects only.
+- Leave open upper space.
+- No sky.
+- No clouds.
+- No sun.
+- No moon.
+- No horizon background fill.
+- No white or black backdrop.
+- No full rectangular background.
+- No full background plate.
+- No top-down, aerial, isometric, poster, or detached diorama composition.
 
-Avoid:
+Use image-first art direction:
 
-- Repeating the full camera model in every section.
-- Repeating the same negative phrase in several forms.
-- Explaining how the website engine works beyond the compact compositing reminder.
-- Long legal-style exclusion lists.
-- Implementation details that do not help the image model draw the strip.
+- "Generate this image now."
+- "Create a transparent PNG scene cutout for gnomefood.com."
+- "Depict one coherent story beat in the timeline."
+- "Include terrain, assigned character, assigned props, and the visible change."
+- "Leave the upper/background area empty and transparent."
+- "Do not render sky, clouds, sun, moon, horizon fill, or a rectangular backdrop."
 
-Use direct art direction instead:
+Do not use document-style labels in `output/prompts/scene.txt`, including:
 
-- "Front strip: cropped route-edge rocks and grit frame the route."
-- "Main strip: readable walkable path and focal mound."
-- "Rear strip: supporting terrain echoes the vein direction."
-- "Atmosphere strip: dust, spores, heat shimmer, and glow only."
+- `Generation command:`
+- `Shared scene context:`
+- `Camera / canvas / composition law:`
+- `Transparency requirements:`
+- `Global negative constraints:`
+- `Visual direction:`
+- `Composition:`
+- `Negative constraints:`
+- `Suggested filename:`
 
 ## Output
 
@@ -125,93 +145,37 @@ Write compact reusable scene context into `output/shared-context.md`. This file 
 - Story beat.
 - Scene memory / previous scene continuity.
 - Current visible change.
-- Camera / canvas / alignment law.
+- Camera / canvas / composition law.
 - Transparency requirements.
 - Character presence or absence.
-- Asset/prop presence or absence.
+- Asset / prop presence or absence.
 - Global negative constraints.
 
-Write final prompts into `output/prompts.md`, and also write each individual prompt to:
+Write the final standalone prompt to:
 
-- `output/prompts/01-front-strip.txt`
-- `output/prompts/02-main-strip.txt`
-- `output/prompts/03-rear-strip.txt`
-- `output/prompts/04-atmosphere-strip.txt`
+- `output/prompts/scene.txt`
 
-Each strip prompt must be fully self-contained. A user must be able to paste only one strip prompt into ChatGPT image generation and get the correct one-strip image without also pasting `output/shared-context.md`, the rest of `output/prompts.md`, or any source files. Do not make the model review or analyze the prompt. Make the requested action image generation.
+The Phase 1 prompt must be fully self-contained. A user must be able to paste only `output/prompts/scene.txt` into ChatGPT image generation and get the correct transparent scene cutout without also pasting `output/shared-context.md` or any source files.
 
-Each final prompt should include:
+Each final scene prompt should include:
 
-- Generation command: `Create one transparent PNG image for this single compositing strip.`
-- Shared scene context copied inline from `output/shared-context.md`, compactly edited only if needed for the current strip.
-- Scene name and strip name.
-- A short story beat summary from `story.md` as part of the shared context.
-- Intended compositing role.
-- Visual content for that strip, combining the global strip rule and scene-specific strip description in service of the story-supported traversal.
-- Compact same-camera, same-size side-view strip language.
-- Compact shared alignment rules covering same canvas size, same camera height, same camera angle, same camera framing, same horizon placement, same bottom alignment, same camera, same world scale, same route direction, vertical scroll progression, no zoom differences, no camera rotation, and no perspective change.
-- A compact reminder that this is a compositing strip, not a complete scene.
-- Transparent PNG requirement.
-- Assigned scene assets only when an artifact or prop is assigned to this strip.
-- Character YAML identity, reference image filename, pose, scale, emotion, direction, evolution stage, and scene-specific changes only when a character is assigned to that strip.
-- Important style guidance from global and scene style files.
-- Short negative instructions that prevent complete scenes, text, borders, UI, extra strips, zoom differences, standalone landscape paintings, and top-down or aerial views.
-- Scroll composition instructions that leave extra terrain beyond the focal area, visual room above and below important content, natural terrain continuation, and enough transparent breathing room for code-driven movement.
-- Character-specific negative prompts when a character is assigned to that strip.
-- Suggested filename for the resulting asset.
+- Exact first line: `Generate this image now.`
+- Exact second line: `Create a transparent PNG scene cutout for gnomefood.com.`
+- Scene title as a short standalone line.
+- A concise visual paragraph combining terrain, assigned character when present, assigned assets when present, and physical evidence of the story beat.
+- A concise story/continuity paragraph when useful, including the visible change and what carries forward from prior scenes.
+- A concise style paragraph from global and scene style files.
+- A compact transparency/negative paragraph covering transparent PNG, clean alpha edges, open upper/background space, no sky, clouds, sun, moon, horizon background fill, white backdrop, black backdrop, full rectangular background, full background plate, text, UI, border, top-down view, aerial view, isometric view, poster composition, centered hero shot, detached diorama, extra characters, and unassigned assets.
+- Inline character identity details, pose, scale, emotion, direction, evolution stage, scene-specific changes, and character-specific negatives only when a character is assigned.
+- Optional reference-image upload instruction only when a reusable character has a visual reference; do not include local repo paths in `output/prompts/scene.txt`.
 
-Do not put scene-wide context only at the top of `output/prompts.md`. Scene-wide context may appear in `output/shared-context.md` for maintainability, but every strip prompt in `output/prompts.md` and every `output/prompts/*.txt` file must include the compact shared context inline.
-
-## Traversal Plane Rules
-
-Every prompt should preserve these rules, usually in one compact "Shared alignment" line:
-
-- All strips use the same camera.
-- All strips use the same side-view traversal plane.
-- All strips use the same camera height and camera angle.
-- All strips use identical horizon placement.
-- All strips use identical canvas dimensions.
-- All strips use identical camera position and framing.
-- All strips use identical world scale and bottom alignment.
-- The path should align around the same top-to-bottom scroll traversal route across all four strips.
-- The engine handles scroll, compositing movement, and Rolodex motion.
-- Strips are slices of one larger walkable timeline scene.
-- Strips are same-camera, same-size compositing slices, not old multi-plane authoring.
-- Strips are assembled later by the engine.
-- Strips should not look like complete illustrations.
-- Strips should not look like concept art posters.
-- Strips should not look like aerial views.
-- Strips should not look like top-down maps.
-- Strips should not look like bird's-eye views.
-- Strips should not look like centered hero shots.
-- Strips should not look like detached dioramas or standalone landscape paintings.
-- All strips should use the same canvas size.
-- All strips should use the same camera framing.
-- All strips should share the same horizon relationship.
-- All strips should share the same bottom alignment.
-- No strip should use a different zoom level.
-
-Preferred composition:
-
-- Same camera.
-- Same side-view traversal plane.
-- Same camera height, camera angle, horizon placement, framing, world scale, and bottom alignment.
-- Consistent path alignment.
-- Consistent scale across strips.
-- Layered compositing strips.
-- Vertical scene progression.
-- Open space for compositing.
-- Extra terrain beyond focal content.
-- Visual room above and below important content.
-- Natural terrain continuation for code-driven traversal.
-- Readable silhouettes.
-- Slight overlap only when useful.
+Do not put scene-wide context only in a separate notes file. Scene-wide context may appear in `output/shared-context.md` for maintainability, but `output/prompts/scene.txt` must include compact shared context inline.
 
 ## Story Beat Rules
 
 Every scene should describe one moment in the civilization's history. The prompt builder should optimize for narrative progression before environmental variation.
 
-Use `story.md` to keep all generated strips aligned around:
+Use `story.md` to keep the generated scene aligned around:
 
 - What happens now.
 - What changed from the previous scene.
@@ -220,145 +184,15 @@ Use `story.md` to keep all generated strips aligned around:
 - What emotional turn the viewer should feel while scrolling.
 - What should visibly carry forward into the next scene.
 
-Every scene should contribute to visible world progression:
-
-- Dead desert.
-- First mycelium.
-- Sporeling emergence.
-- First cultivation.
-- First garden bed.
-- Early settlement.
-- Agricultural village.
-- Fungal infrastructure.
-- Crystal-powered agriculture.
-- Cyberpunk fungal kingdom.
-
 Environment descriptions support the story. They should provide physical evidence of the beat, continuity with prior beats, route readability, mood, and material specificity. They should not override the story beat or turn the scene into a static place study.
 
-## Traversal Beat Rules
+## Advanced Strip Mode
 
-Every scene should describe one shared top-to-bottom timeline moment. Each generated strip is isolated on transparency, but it must feel like part of the same third-person side-view path that a small character or implied civilization-level point of view is moving through as the viewer scrolls down through time.
+Four-strip output remains advanced/experimental. Use it only when a scene explicitly needs legacy strip compositing. In that mode, read `layer-rules/*.md`, scene `layers/*.md`, and produce the legacy prompts:
 
-Use `traversal.md` to keep all strips aligned around:
+- `output/prompts/01-front-strip.txt`
+- `output/prompts/02-main-strip.txt`
+- `output/prompts/03-rear-strip.txt`
+- `output/prompts/04-atmosphere-strip.txt`
 
-- The implied route through the story beat.
-- Top-to-bottom scroll direction, understood in-world as north-to-south movement.
-- The path entry and path exit.
-- The viewer's feeling while moving through the scene.
-- The role of front, main, rear, and atmosphere strips in the same route.
-- The shared visual cue that ties all four strips together.
-- Cross-strip consistency for camera angle, path direction, mood, lighting, scale, terrain profile, and design cue.
-
-Every strip prompt must state these ideas compactly:
-
-- Same top-to-bottom scroll traversal scene as the other strips.
-- Visual alignment with the shared route from `traversal.md`.
-- Continuous path and shared design cue across all four strips.
-- A clear route event arc inside one continuous composition: the path leads toward the focal change, the focal change is visible along the route, and the same visual cue continues beyond it.
-- Engine-assembled compositing strip, not a complete scene.
-
-Do not write strip prompts as four variations of the same centered object. Each strip should depict the story beat as one unbroken timeline-scene slice through its own compositing responsibility. The front strip frames the same route event, the main strip carries the route and action, the rear strip supports the same route event with continuity cues, and the atmosphere strip carries the same event through light, dust, spores, haze, and glow.
-
-Describe the event as one uninterrupted transparent scene slice. Use phrases like "along the route," "toward the mound," "around the mound," and "past the mound" so the composition stays continuous.
-
-## Prompt Shape
-
-Use this art-director structure:
-
-```text
-Generation command:
-Create one transparent PNG image for this single compositing strip.
-
-Scene: [scene name]
-Strip: [strip name] - [front-strip / main-strip / rear-strip / atmosphere-strip]
-
-Shared scene context:
-Scene id: [scene id].
-Scene title: [scene title].
-Story beat: [One or two compact sentences from story.md: what happens now, what changed, emotional turn, and carry-forward cue.]
-Scene memory / previous continuity: [Previous-scene terrain, landmark, route, character, and world-state memory, or "first scene; no previous-scene continuity."]
-Current visible change: [What is visibly new in this scene.]
-Camera / canvas / alignment law: same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon relationship, same bottom alignment, same world scale, and no zoom difference from the other strips.
-Transparency requirements: transparent PNG, clean alpha edges, no background plate, no sky plate, no full scene backdrop.
-Character presence: [Assigned character details, or explicit absence.]
-Asset / prop presence: [Assigned assets/props for this scene, or explicit absence.]
-Global negative constraints: no text, logo, watermark, border, UI, top-down, aerial, isometric, poster composition, complete scene, standalone landscape, unrelated characters, unassigned assets, camera rotation, perspective change, or zoom difference.
-
-Strip role:
-[One sentence describing what this strip contributes to the composite.]
-
-Visual content:
-[Direct visual instruction for this strip only. Describe the route event as one continuous scene slice through this strip's responsibility: the path leads toward the focal change, passes through or beside it, then continues beyond it. Include assigned assets or character direction only if assigned. Keep details concrete, visual, and non-repetitive.]
-
-Style:
-[Compact global and scene style direction.]
-
-Shared alignment:
-Same full-width canvas size, same side-view camera height and angle, same camera framing, same horizon placement, same bottom alignment, same camera, same world scale, no zoom differences, no camera rotation, and no perspective change across strips. Align to the same vertical scroll route from top/north to bottom/south; keep the path and shared design cue continuous.
-
-Character:
-[Only if assigned: identity reference image, YAML path, identity anchors, pose, scale, emotion, direction, evolution stage, and scene-specific changes.]
-
-Transparency and composition:
-Transparent PNG compositing strip only, not a complete scene. Clean alpha edges, open transparent areas, no rectangular backdrop, no sky plate, no cloud plate, no horizon background fill, no white background, no black background, and no full scene backdrop.
-
-Negative:
-No text, logo, watermark, border, UI, top-down, aerial, isometric, portrait framing, poster composition, complete scene, standalone landscape, zoom change, camera rotation, perspective change, duplicate strip, unassigned assets, unrelated characters.
-
-Suggested filename: output/images/[strip name].png
-```
-
-## Character Handling
-
-Reusable characters live in `characters/[character-id]/`. The scene controls whether and where they appear through `scenes/[scene]/characters.md`.
-
-When a scene places a character into a strip:
-
-1. Keep the character in that strip only.
-2. Read the character YAML in `reference/` first and use it as the primary structured identity source.
-3. Use the YAML `reference_image.filename` value as the primary image identity reference, and explicitly mention that image in the prompt.
-4. Preserve identity anchors from the YAML, `character.md`, and `visual-rules.md`.
-5. Use a pose from `poses.md` or a compatible scene-specific pose.
-6. Apply the correct evolution stage from the YAML and `evolution.md`.
-7. Include scene-specific pose, scale, emotion, direction, and environmental modifications from `characters.md`.
-8. Include additional reference image filenames from `reference/` when available.
-9. Add reusable and scene-specific character negative prompts.
-
-When a scene does not place a character into a strip, do not mention the character in that strip prompt. This prevents accidental duplicate characters and keeps compositing assets isolated.
-
-Reference images should be treated as identity guides, not as finished scene layouts. Use them to preserve silhouette, proportions, materials, palette, expression, and recognizable details across generated images.
-
-## Strip Handling
-
-Global strip rules live in `layer-rules/`. Scene story files live in `scenes/[scene]/story.md`. Scene strip files live in `scenes/[scene]/layers/`.
-
-For every strip prompt:
-
-1. Start with the global strip rule for the current strip.
-2. Apply the global camera language.
-3. Apply the story beat from `story.md` as the primary scene definition.
-4. Apply the shared route from `traversal.md` as support for that beat.
-5. Read `assets/artifacts.md` and `assets/props.md`, and include only assets assigned to the current strip.
-6. Add scene-specific content from the matching scene strip file, including its `Traversal Role`.
-7. Use scene-specific environmental text as additive detail or explicit override, not as a replacement for the global strip purpose, story beat, or shared traversal route.
-8. Keep the result as one transparent PNG asset for that strip only.
-9. Include the same-camera, same-size side-view reminders compactly, not necessarily verbatim.
-10. Include the required traversal and compositing statements compactly.
-11. Preserve canvas consistency: identical dimensions, camera position, horizon placement, framing, world scale, and bottom alignment across all four strips.
-12. Preserve scroll composition room: extra terrain beyond the focal area, visual room above and below important content, natural continuation of terrain, and transparent breathing room for engine motion.
-
-Scene strip files should remain plain human descriptions. They are not final prompts and do not need to repeat every transparency, camera, traversal, or compositing rule. Their `Traversal Role` sections should describe only how that strip supports the shared route from `traversal.md`.
-
-## Reference Image Language
-
-When a character is assigned to a strip, the final prompt must include language like:
-
-```text
-Use `characters/sporeling/reference/sporeling_v1.png` as the identity reference for the sporeling. Preserve the same character identity, including the oversized mushroom cap head, glowing amber eyes, warm beige fungal body, root-like mycelium limbs, compact proportions, and gentle curious expression. Adapt only the pose, scale, facing direction, emotion, and environmental effects described for this scene; do not redesign the character.
-```
-
-If the actual reference image file differs from the YAML filename, use the actual filename present in `reference/` and update the scene prompt notes accordingly.
-
-## Automation Notes
-
-Future scripts can parse `scene.json`, `story.md`, `traversal.md`, `assets/artifacts.md`, `assets/props.md`, and `characters.md`, read camera and strip-rule files, read character YAML files, resolve reference image filenames, conditionally add scene assets and character files for assigned strips, and emit prompt blocks into `output/prompts.md`. Keep headings stable and filenames predictable.
+Strip prompts must remain same-camera, same-size transparent PNG compositing slices. They are not the Phase 1 daily default.

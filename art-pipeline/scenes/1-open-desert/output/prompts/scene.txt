@@ -1,0 +1,12 @@
+Generate this image now.
+Create a transparent PNG scene cutout for gnomefood.com.
+
+Open Desert
+
+Depict an open, empty desert cutout made from low side-view terrain, wind-rippled sand, cracked clay, salt-dusted dry ground, and scattered small stones. A faint fungal path appears as a subtle pale mycelium thread or spore-vein running through the terrain, delicate enough to feel like the first sign of life rather than a built road. Keep the scene sparse and quiet, with no buildings, tools, characters, machines, crops, settlements, animals, or extra narrative objects.
+
+This is the first scene in the visual chronicle, with no previous-scene continuity. Nothing has been built yet; the only visible change is the barely visible fungal path beginning to thread through the sand. Make the terrain feel walkable and continuous so this first trace can carry forward into later timeline scenes.
+
+Cinematic, richly detailed, hand-crafted fantasy science fiction in the earliest desert-wasteland phase of fungal cyberpunk agrarian worldbuilding. Use sun-faded ochre, rust, ash, bleached bone, dry cyan mineral hints, cracked clay, salt dust, and sparse pale fungal material as local object color only. Keep the mood dry, harsh, exposed, mysterious, and quiet.
+
+Transparent PNG with transparent background and clean alpha edges. Terrain and natural objects only; leave generous open upper space and an empty sky/background area on transparency so the website background shows through. No sky, no clouds, no sun, no moon, no horizon background fill, no white backdrop, no black backdrop, no full rectangular background, no full background plate, no text, no logo, no watermark, no border, no UI, no top-down view, no aerial view, no isometric view, no poster composition, no centered hero shot, no detached diorama, no unrelated characters, and no unassigned assets.

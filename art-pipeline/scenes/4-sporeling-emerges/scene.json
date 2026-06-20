@@ -1,0 +1,49 @@
+{
+  "id": "4-sporeling-emerges",
+  "title": "Sporeling Emerges",
+  "phase": "desert-wasteland",
+  "world_evolution_phase": "first fungal life",
+  "order": 4,
+  "status": "draft",
+  "story": "story.md",
+  "traversal": "traversal.md",
+  "characters_file": "characters.md",
+  "phase_1_default": {
+    "prompt": "output/prompts/scene.txt",
+    "image": "output/images/scene.png",
+    "description": "One transparent PNG scene cutout depicting Sporeling emerging in front of the split mound."
+  },
+  "continuity": {
+    "previous_scene": "../3-mound-opening",
+    "previous_scene_story": "../3-mound-opening/story.md",
+    "previous_scene_traversal": "../3-mound-opening/traversal.md",
+    "previous_scene_prompts": "../3-mound-opening/output/prompts/scene.txt",
+    "preserve": [
+      "side-view camera language",
+      "framing",
+      "world scale",
+      "bottom alignment",
+      "split mound",
+      "blue glow",
+      "little white mushrooms",
+      "faint fungal path"
+    ],
+    "change": [
+      "Sporeling emerges",
+      "first character presence",
+      "newly awakened fungal life"
+    ]
+  },
+  "assets": {},
+  "characters": [
+    {
+      "id": "sporeling",
+      "source": "../../characters/sporeling",
+      "reference_image": "../../characters/sporeling/reference/sporeling_v1.png",
+      "identity_source": "../../characters/sporeling/reference/sporeling-character.yaml",
+      "role": "newly emerged character standing in front of the split mound"
+    }
+  ],
+  "advanced_legacy_strips": "Use art-pipeline/layer-rules/ and add scene-local strip files only when four-strip output is explicitly requested.",
+  "notes": "Phase 1 scene prompt generated from story.md and characters/sporeling. Daily output is output/prompts/scene.txt -> output/images/scene.png. Preserve Sporeling identity exactly from reusable character files."
+}

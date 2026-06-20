@@ -94,6 +94,60 @@ function hasTransparentPngRequirements(promptsText) {
   );
 }
 
+function hasSceneCutoutRequirements(promptText) {
+  const text = normalizeText(promptText);
+  return (
+    text.includes("transparent png") &&
+    (text.includes("transparent background") ||
+      text.includes("clean alpha") ||
+      text.includes("clean alpha edges")) &&
+    text.includes("no sky") &&
+    text.includes("no clouds") &&
+    text.includes("no sun") &&
+    text.includes("no moon") &&
+    (text.includes("no horizon background fill") ||
+      text.includes("no horizon fill")) &&
+    (text.includes("no white") || text.includes("no white backdrop")) &&
+    (text.includes("no black") || text.includes("no black backdrop")) &&
+    (text.includes("no full rectangular background") ||
+      text.includes("no rectangular background") ||
+      text.includes("no rectangular backdrop")) &&
+    text.includes("terrain") &&
+    (text.includes("story beat") ||
+      text.includes("world moment") ||
+      text.includes("visual chronicle") ||
+      text.includes("timeline scene")) &&
+    (text.includes("open upper space") ||
+      text.includes("leave open upper space") ||
+      text.includes("empty sky/background"))
+  );
+}
+
+function hasSceneGenerationCommand(promptText) {
+  const text = normalizeText(promptText);
+  return (
+    text.startsWith(
+      "generate this image now.\ncreate a transparent png scene cutout for gnomefood.com."
+    ) ||
+    text.includes("create one transparent png image for this complete scene cutout")
+  );
+}
+
+function hasDocumentStyleLabels(promptText) {
+  const text = normalizeText(promptText);
+  return [
+    "generation command:",
+    "shared scene context:",
+    "camera / canvas / composition law:",
+    "transparency requirements:",
+    "global negative constraints:",
+    "visual direction:",
+    "composition:",
+    "negative constraints:",
+    "suggested filename:",
+  ].some((label) => text.includes(label));
+}
+
 function hasSharedCameraCanvasAlignment(promptsText) {
   const text = normalizeText(promptsText);
   const canvas = text.includes("canvas size") || text.includes("canvas dimensions");
@@ -126,6 +180,23 @@ function hasInlineSharedContext(promptText) {
   );
 }
 
+function hasImageFirstSceneContent(promptText) {
+  const text = normalizeText(promptText);
+  return (
+    text.includes("scene") &&
+    (text.includes("story") ||
+      text.includes("continuity") ||
+      text.includes("carries forward") ||
+      text.includes("chronicle") ||
+      text.includes("timeline")) &&
+    (text.includes("style") ||
+      text.includes("cinematic") ||
+      text.includes("hand-crafted") ||
+      text.includes("fungal") ||
+      text.includes("worldbuilding"))
+  );
+}
+
 function hasSharedContextFields(sharedContextText) {
   const text = normalizeText(sharedContextText);
   return [
@@ -135,6 +206,22 @@ function hasSharedContextFields(sharedContextText) {
     "scene memory",
     "current visible change",
     "camera / canvas / alignment law",
+    "transparency requirements",
+    "character presence",
+    "asset / prop presence",
+    "global negative constraints",
+  ].every((field) => text.includes(field));
+}
+
+function hasPhase1SharedContextFields(sharedContextText) {
+  const text = normalizeText(sharedContextText);
+  return [
+    "scene id",
+    "scene title",
+    "story beat",
+    "scene memory",
+    "current visible change",
+    "camera / canvas / composition law",
     "transparency requirements",
     "character presence",
     "asset / prop presence",
@@ -207,25 +294,15 @@ function main() {
   const traversalPath = path.join(sceneDir, "traversal.md");
   const sharedContextPath = path.join(sceneDir, "output", "shared-context.md");
   const promptsPath = path.join(sceneDir, "output", "prompts.md");
+  const scenePromptPath = path.join(sceneDir, "output", "prompts", "scene.txt");
+  const phase1ScenePromptExists = exists(scenePromptPath);
 
   addCheck(checks, "story.md exists", exists(storyPath), "story.md");
-  addCheck(checks, "traversal.md exists", exists(traversalPath), "traversal.md");
-
-  for (const strip of REQUIRED_STRIPS) {
-    const existingStripFile = findExistingStripFile(sceneDir, strip);
-    addCheck(
-      checks,
-      `${strip} strip brief exists`,
-      Boolean(existingStripFile),
-      existingStripFile || stripFileCandidates(strip).join(" or ")
-    );
-  }
-
   addCheck(
     checks,
-    "output/prompts.md exists",
-    exists(promptsPath),
-    "output/prompts.md"
+    "traversal.md exists when present",
+    !exists(traversalPath) || fs.statSync(traversalPath).isFile(),
+    exists(traversalPath) ? "optional traversal.md present" : "optional traversal.md not present"
   );
 
   addCheck(
@@ -240,8 +317,12 @@ function main() {
     addCheck(
       checks,
       "output/shared-context.md includes required fields",
-      hasSharedContextFields(sharedContextText),
-      "expects scene id/title, story beat, continuity, visible change, alignment, transparency, character, asset, and negative fields"
+      phase1ScenePromptExists
+        ? hasPhase1SharedContextFields(sharedContextText)
+        : hasSharedContextFields(sharedContextText),
+      phase1ScenePromptExists
+        ? "expects scene id/title, story beat, continuity, visible change, composition, transparency, character, asset, and negative fields"
+        : "expects scene id/title, story beat, continuity, visible change, alignment, transparency, character, asset, and negative fields"
     );
   } else {
     addCheck(
@@ -257,7 +338,56 @@ function main() {
     promptsText = readText(promptsPath);
   }
 
-  if (promptsText) {
+  if (phase1ScenePromptExists) {
+    const scenePromptText = readText(scenePromptPath);
+    addCheck(
+      checks,
+      "Phase 1 output prompt exists",
+      true,
+      "output/prompts/scene.txt"
+    );
+    addCheck(
+      checks,
+      "Phase 1 prompt is self-contained",
+      hasSceneGenerationCommand(scenePromptText) &&
+        hasImageFirstSceneContent(scenePromptText) &&
+        hasSceneCutoutRequirements(scenePromptText),
+      "expects image-first generation command, scene content, transparent cutout rules, forbidden background rules, story/continuity, and open upper space"
+    );
+    addCheck(
+      checks,
+      "Phase 1 prompt is image-first",
+      !hasDocumentStyleLabels(scenePromptText),
+      "expects direct image-generation prose without document-style labels"
+    );
+
+    if (promptsText) {
+      addCheck(
+        checks,
+        "optional output/prompts.md references Phase 1 scene prompt",
+        normalizeText(promptsText).includes("output/prompts/scene.txt") &&
+          normalizeText(promptsText).includes("output/images/scene.png"),
+        "expects scene.txt and scene.png daily output references"
+      );
+    } else {
+      addCheck(
+        checks,
+        "optional output/prompts.md references Phase 1 scene prompt",
+        true,
+        "output/prompts.md not present; Phase 1 uses output/prompts/scene.txt directly"
+      );
+    }
+  } else if (promptsText) {
+    for (const strip of REQUIRED_STRIPS) {
+      const existingStripFile = findExistingStripFile(sceneDir, strip);
+      addCheck(
+        checks,
+        `${strip} strip brief exists`,
+        Boolean(existingStripFile),
+        existingStripFile || stripFileCandidates(strip).join(" or ")
+      );
+    }
+
     const lowerPrompts = normalizeText(promptsText);
     const missingStripRefs = REQUIRED_STRIPS.filter(
       (strip) => !lowerPrompts.includes(strip)
@@ -314,76 +444,45 @@ function main() {
             .join("; ")
         : "no stale terms found"
     );
+    for (const strip of REQUIRED_STRIPS) {
+      const individualPromptPath = path.join(sceneDir, "output", "prompts", `${strip}.txt`);
+      const relativePromptPath = path.relative(sceneDir, individualPromptPath);
+      const promptExists = exists(individualPromptPath);
+
+      addCheck(
+        checks,
+        `${strip} individual prompt exists`,
+        promptExists,
+        relativePromptPath
+      );
+
+      if (promptExists) {
+        const promptText = readText(individualPromptPath);
+        addCheck(
+          checks,
+          `${strip} individual prompt is self-contained`,
+          hasGenerationCommand(promptText) &&
+            hasInlineSharedContext(promptText) &&
+            hasTransparentPngRequirements(promptText) &&
+            hasSharedCameraCanvasAlignment(promptText),
+          "expects generation command, inline shared context, transparency, and alignment"
+        );
+      } else {
+        addCheck(
+          checks,
+          `${strip} individual prompt is self-contained`,
+          false,
+          `${relativePromptPath} could not be read`
+        );
+      }
+    }
   } else {
     addCheck(
       checks,
-      "output/prompts.md references all four strips",
+      "Phase 1 output prompt exists",
       false,
-      "output/prompts.md could not be read"
+      "expected output/prompts/scene.txt for Phase 1, or legacy strip prompts"
     );
-    addCheck(
-      checks,
-      "output/prompts.md includes transparent PNG requirements",
-      false,
-      "output/prompts.md could not be read"
-    );
-    addCheck(
-      checks,
-      "output/prompts.md includes shared camera/canvas alignment language",
-      false,
-      "output/prompts.md could not be read"
-    );
-    addCheck(
-      checks,
-      "output/prompts.md has no stale multi-plane/camera terminology",
-      false,
-      "output/prompts.md could not be read"
-    );
-    addCheck(
-      checks,
-      "output/prompts.md includes four generation commands",
-      false,
-      "output/prompts.md could not be read"
-    );
-    addCheck(
-      checks,
-      "output/prompts.md includes inline shared context for each strip",
-      false,
-      "output/prompts.md could not be read"
-    );
-  }
-
-  for (const strip of REQUIRED_STRIPS) {
-    const individualPromptPath = path.join(sceneDir, "output", "prompts", `${strip}.txt`);
-    const relativePromptPath = path.relative(sceneDir, individualPromptPath);
-    const promptExists = exists(individualPromptPath);
-
-    addCheck(
-      checks,
-      `${strip} individual prompt exists`,
-      promptExists,
-      relativePromptPath
-    );
-
-    if (promptExists) {
-      const promptText = readText(individualPromptPath);
-      addCheck(
-        checks,
-        `${strip} individual prompt is self-contained`,
-        hasGenerationCommand(promptText) &&
-          hasInlineSharedContext(promptText) &&
-          hasTransparentPngRequirements(promptText) &&
-          hasSharedCameraCanvasAlignment(promptText),
-        "expects generation command, inline shared context, transparency, and alignment"
-      );
-    } else {
-      addCheck(
-        checks,
-        `${strip} individual prompt is self-contained`,
-        false,
-        `${relativePromptPath} could not be read`
-      );
-    }
   }
 
   const nonFirstScene = isNonFirstScene(sceneDir, sceneJson);
